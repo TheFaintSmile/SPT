@@ -15,11 +15,10 @@ Including another URLconf
 """
 from unicodedata import name
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from sistem_perekrutan_terbuka.views import landingpage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', landingpage, name='landingpage'),
+    path('', include('homepage.urls')),
 ]

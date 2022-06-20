@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard_panitia',
     'dashboard_pendaftar',
+    'backend',
+    'user_peserta'
 ]
 
 MIDDLEWARE = [

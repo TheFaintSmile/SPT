@@ -154,13 +154,8 @@ nav a {
     text-align: left;
 }
 
-header nav ul img{
-    width: 5rem; 
-    height: 1rem;
-    margin-right: auto;
-}
 nav a:hover {
-
+    
 }
 
 .nav-dropdown-buttons {

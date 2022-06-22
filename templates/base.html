@@ -20,17 +20,16 @@
 
         <nav>
             <ul>
-                <li><a href="">Keuangan</a></li>
-                <li><a href="">Publikasi</a></li>
-                <li><a href="">Surat</a></li>
-                <li class="nav-only-desktop">
-                    <a href=" " class="button fit-content" style="height: fit-content; margin: 0; padding: 0.6em 1em;">Masuk</a>
-                </li>
-                <div class="nav-dropdown-buttons nav-only-mobile">
-                    <a href="" class="nav-only-mobile button btn-dashboard">
-                        Masuk
-                    </a>
-                </div>
+                <li><a href="">Daftar</a></li>
+                <ul>
+                    <li><a href="">Peserta</a></li>
+                    <li><a href="">Panitia</a></li>
+                </ul>
+                <li><a href="">Perekrutan Terbuka</a></li>
+                <li><a href="">Dashboard</a></li>
+                <img src="{% static 'base/svg/user-solid.svg' %}">
+                <li><a href="">Akun</li>
+                <img src="{% static 'base/svg/right-from-bracket-solid.svg' %}">
             </ul>
         </nav>
 
@@ -90,7 +89,7 @@
             <svg width="24" height="24" viewBox="0 0 24 24">
                 <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#copyright-logo"></use>
             </svg>
-            <p>Biro Multimedia & Departemen Pendidikan dan Keilmuan BEM UI 2021</p>
+            <p>2022 Badan Eksekutif Mahasiswa - Biro Multimedia</p>
         </div>
     </footer>
 </body>

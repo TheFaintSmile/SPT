@@ -9,47 +9,63 @@
   <link rel="shortcut icon" href="{% static 'base/img/favicon.png' %}"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="application/javascript" src="{% static 'base/js/script.js' %}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   {% block meta %}
   {% endblock meta %}
 </head>
 
 <body>
- <header {% if '/' == request.path %}class="header-transparent"{% else %}class="header-white"{% endif %}>
+    <nav>
+        <div class="logo">SPT BEM UI 2022</div>
+        <ul>
+            <li><a href="">Daftar</a></li>
+            <li><a href="">Perekrutan Terbuka</a></li> 
+            <li><a href="">Dashboard</a></li>
+            <li><a href=""><img src="{% static 'base/svg/user-solid.svg' %}" style="height:1rem; margin-right: 0.5rem; ">User</a></li>
+            <li><a href=""><img src="{% static 'base/svg/right-from-bracket-solid.svg' %}" style="height:1rem; "></a></li>
+        </ul>
+    </nav>
+
+ <!-- <header {% if '/' == request.path %}class="header-transparent"{% else %}class="header-white"{% endif %}>
         <a href="" class="logo"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:8.75rem; height:3.5rem;"></a>
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
 
         <nav>
             <ul>
-                <li><a href="">Daftar</a></li>
-                <ul>
-                    <li><a href="">Peserta</a></li>
-                    <li><a href="">Panitia</a></li>
-                </ul>
+                <li><a href="#puncak">Daftar</a></li>
                 <li><a href="">Perekrutan Terbuka</a></li>
                 <li><a href="">Dashboard</a></li>
-                <img src="{% static 'base/svg/user-solid.svg' %}">
-                <li><a href="">Akun</li>
-                <img src="{% static 'base/svg/right-from-bracket-solid.svg' %}">
+                <li class="nav-only-desktop">
+                    <a href="" class="button fit-content" style="height: fit-content; margin: 0; padding: 0.6em 1em;">Masuk</a>
+                </li>
+                <div class="nav-dropdown-buttons nav-only-mobile">
+                    <a href="" class="nav-only-mobile button btn-dashboard">
+                        Masuk
+                    </a>
+                </div>
+                <li><a href="#"><i class="fa fa-fw fa-user"></i>Akun</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li> 
             </ul>
         </nav>
 
         <label for="nav-toggle" class="nav-toggle-label" id="nav-toggle-label"><span></span></label>
 
-    </header>
+    </header> -->
 
     <div class="content-container">
        {% block content %}
         {% endblock content %}
- </div>
+    </div>
 
-    <footer>
+    <!-- <footer>
         <div class="footer-upper">
             <div class="footer1">
                 <a href=""><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:12.5rem; height:5rem;"></a>
             </div>
 
             <div class="footer2">
-                <strong>Kunjungi media sosial kami!</strong>
+                <strong style="color: #FFFF;">Kunjungi media sosial kami!</strong>
                 <ul>
                     <li>
                         <a target="_blank" href="https://chat.whatsapp.com/LESwRvruZO2IgUKISCoIRn">
@@ -67,8 +83,8 @@
                     </li>
                     <li>
                         <a target="_blank" href="https://www.youtube.com/c/bemuiofficial">
-                            <svg width="32" height="32" viewBox="0 0 24 24">
-                                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#youtube-logo"></use>
+                            <svg width="32" height="32" viewBox="0 0 24 24" >
+                                <use href="{% static 'base/svg/YouTube-Icon-White-Logo.wine.svg' %}"></use>
                             </svg>
                         </a>
                     </li>
@@ -89,9 +105,9 @@
             <svg width="24" height="24" viewBox="0 0 24 24">
                 <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#copyright-logo"></use>
             </svg>
-            <p>2022 Badan Eksekutif Mahasiswa - Biro Multimedia</p>
+            <p id="label-footer">2022 Badan Eksekutif Mahasiswa - Biro Multimedia</p>
         </div>
-    </footer>
+    </footer> -->
 </body>
 
 </html>

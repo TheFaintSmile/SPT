@@ -9,8 +9,9 @@
   <link rel="shortcut icon" href="{% static 'base/img/favicon.png' %}"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="application/javascript" src="{% static 'base/js/script.js' %}"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   {% block meta %}
   {% endblock meta %}
 </head>
@@ -58,56 +59,41 @@
         {% endblock content %}
     </div>
 
-    <!-- <footer>
-        <div class="footer-upper">
-            <div class="footer1">
-                <a href=""><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:12.5rem; height:5rem;"></a>
+    <footer class="footer">
+        <div class="footer-left">
+            <div class="logo-spt">
+                <img src="{% static 'base/img/logo-biro-jodoh.png' %}"alt="">
             </div>
+            <p id="mulmed-tag">@ 2022 Badan Eksekutif Mahasiswa - Biro Multimedia</p>
+        </div>
 
-            <div class="footer2">
-                <strong style="color: #FFFF;">Kunjungi media sosial kami!</strong>
-                <ul>
-                    <li>
-                        <a target="_blank" href="https://chat.whatsapp.com/LESwRvruZO2IgUKISCoIRn">
-                            <svg width="32" height="32" viewBox="0 0 24 24">
-                                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#whatsapp-logo"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.instagram.com/ui.ruangedukasi/">
-                            <svg width="32" height="32" viewBox="0 0 24 24">
-                                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#instagram-logo"></use>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://www.youtube.com/c/bemuiofficial">
-                            <svg width="32" height="32" viewBox="0 0 24 24" >
-                                <use href="{% static 'base/svg/YouTube-Icon-White-Logo.wine.svg' %}"></use>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
+        <div class="footer-center">
+            <!-- <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Indonesia</span> Sumatera Barat, Padang</p>
             </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+62 077-777-77</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="#">support@gmail.com</a></p>
+            </div> -->
+        </div>
 
-            <div class="footer3 nav-only-mobile">
-                <p>
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                        <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#copyright-logo"></use>
-                    </svg>
-                    Biro Multimedia & Departemen <br>Pendidikan dan Keilmuan BEM UI 2021
-                </p>
+        <div class="footer-right">
+            <div class="footer-media">
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
             </div>
         </div>
 
-        <div class="footer-bottom nav-only-desktop">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#copyright-logo"></use>
-            </svg>
-            <p id="label-footer">2022 Badan Eksekutif Mahasiswa - Biro Multimedia</p>
-        </div>
-    </footer> -->
+    </footer>
+
 </body>
 
 </html>

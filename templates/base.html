@@ -7,36 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
   <link rel="shortcut icon" href="{% static 'base/img/favicon.png' %}"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="application/javascript" src="{% static 'base/js/script.js' %}"></script>
-  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   {% block meta %}
   {% endblock meta %}
 </head>
 
 <body>
-    <nav>
-        <div class="logo">SPT BEM UI 2022</div>
-        <ul>
-            <li><a href="">Daftar</a></li>
-            <li><a href="">Perekrutan Terbuka</a></li> 
-            <li><a href="">Dashboard</a></li>
-            <li><a href=""><img src="{% static 'base/svg/user-solid.svg' %}" style="height:1rem; margin-right: 0.5rem; ">User</a></li>
-            <li><a href=""><img src="{% static 'base/svg/right-from-bracket-solid.svg' %}" style="height:1rem; "></a></li>
-        </ul>
-    </nav>
-
- <!-- <header {% if '/' == request.path %}class="header-transparent"{% else %}class="header-white"{% endif %}>
+	<header class="header-white">
         <a href="" class="logo"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:8.75rem; height:3.5rem;"></a>
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
 
         <nav>
             <ul>
-                <li><a href="#puncak">Daftar</a></li>
+                <li><a href="">Daftar</a></li>
                 <li><a href="">Perekrutan Terbuka</a></li>
-                <li><a href="">Dashboard</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="">Dashboard</a></li>
+                    <li>
+                        <a href="" class="logo" style="color:#49B5CD;"><i class="material-symbols-outlined" style="font-size:30px;color:#49B5CD;text-shadow:0.1px 0.1px 0.1px #000000; margin-right: 5px;">account_circle</i>Radit</a>
+                    </li>
+                    <li>
+                        <a href="" class="logo" style="color:#144B84"><i class="material-symbols-outlined" style="font-size:30px;color:#144B84;text-shadow:0.1px 0.1px 0.1px #000000; margin-right: 5px;">logout</i>Keluar</a>
+                    </li>
+                {% endif %}
+                {% if not request.user.is_authenticated %}
                 <li class="nav-only-desktop">
                     <a href="" class="button fit-content" style="height: fit-content; margin: 0; padding: 0.6em 1em;">Masuk</a>
                 </li>
@@ -45,55 +42,92 @@
                         Masuk
                     </a>
                 </div>
-                <li><a href="#"><i class="fa fa-fw fa-user"></i>Akun</a></li>
-                <li><a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a></li> 
+                {% endif %}
             </ul>
         </nav>
 
         <label for="nav-toggle" class="nav-toggle-label" id="nav-toggle-label"><span></span></label>
 
-    </header> -->
+    </header>
 
     <div class="content-container">
-       {% block content %}
+      	{% block content %}
         {% endblock content %}
-    </div>
+	</div>
 
-    <footer class="footer">
-        <div class="footer-left">
-            <div class="logo-spt">
-                <img src="{% static 'base/img/logo-biro-jodoh.png' %}"alt="">
+    <footer>
+        <div class="footer-upper">
+            <div class="footer1">
+                <a href=""><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:12.5rem; height:5rem;"></a>
             </div>
-            <p id="mulmed-tag">@ 2022 Badan Eksekutif Mahasiswa - Biro Multimedia</p>
+
+            <div class="footer2">
+                <strong>Kunjungi media sosial kami!</strong>
+                <ul>
+                    <li>
+                        <a target="_blank" href="https://chat.whatsapp.com/LESwRvruZO2IgUKISCoIRn">
+                            <svg width="32" height="32" viewBox="0 0 24 24">
+                                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#whatsapp-logo"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.instagram.com/ui.ruangedukasi/">
+                            <svg width="32" height="32" viewBox="0 0 24 24">
+                                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#instagram-logo"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.youtube.com/c/bemuiofficial">
+                            <svg width="32" height="32" viewBox="0 0 24 24">
+                                <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#youtube-logo"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer3 nav-only-mobile">
+                <p>
+                    <svg width="24" height="24" viewBox="0 0 24 24">
+                        <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#copyright-logo"></use>
+                    </svg>
+                    @ 2022 - Badan Eksekutif Mahasiswa UI - Biro Multimedia
+                </p>
+            </div>
         </div>
 
-        <div class="footer-center">
-            <!-- <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span>Indonesia</span> Sumatera Barat, Padang</p>
+        <div class="footer-middle nav-only-desktop">
+            <div class="footer1-middle footer-mid">
+                <strong>Keuangan</strong>
+                <p>Reimbursement</p>
+                <p>Advanced</p>
+                <p>Penyetoran</p>
+                <br>
+                <strong>Publikasi</strong>
+                <p>Publikasi</p>
             </div>
+            <div class="footer2-middle footer-mid">
+                <strong>Surat Menyurat</strong>
+                <p>Dirmawa</p>
+                <p>BEM UI</p>
+                <p>sertifikat</p>
+                <br>
+                <strong>Survei</strong>
+                <p>Survei</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom nav-only-desktop">
             <div>
-                <i class="fa fa-phone"></i>
-                <p>+62 077-777-77</p>
-            </div>
-            <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="#">support@gmail.com</a></p>
-            </div> -->
-        </div>
-
-        <div class="footer-right">
-            <div class="footer-media">
-                <a href="#"><i class="fa fa-youtube"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use href="{% static 'base/svg/base-sprite-sheet.svg' %}#copyright-logo"></use>
+                </svg>
+                <p>2022 - Badan Eksekutif Mahasiswa UI - Biro Multimedia</p>
             </div>
         </div>
-
     </footer>
-
 </body>
 
 </html>

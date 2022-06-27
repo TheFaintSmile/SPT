@@ -22,7 +22,7 @@
 
         <nav>
             <ul>
-                <li><a href="">Daftar</a></li>
+                <li><a href="#jump-daftar">Daftar</a></li>
                 <li><a href="">Perekrutan Terbuka</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="">Dashboard</a></li>
@@ -101,8 +101,12 @@
         <div class="footer-middle nav-only-desktop">
             <div class="footer1-middle footer-mid">
                 <strong>Daftar Akun</strong>
-                <p>Peserta</p>
+                <a href="#jump-daftar" style="color:white; text-decoration: none;">
+                    <p>Peserta</p>
+                </a>
+                <a href="#jump-daftar" style="color:white; text-decoration: none;">
                 <p>Panitia</p>
+                </a>
                 <br>
             </div>
         </div>

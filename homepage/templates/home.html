@@ -13,111 +13,59 @@
     <div class="home-top">
         <div class="home-top-color-filter">
             <div class="only-desktop">
-                <h1>Get your task done<br>By using SIT</h1>
-                <p>Permudah segala urusanmu dengan Sistem Informasi Terintegrasi</p>
-                {% if not request.user.is_authenticated %}
-                    <a href="" class="button fit-content">Login Sekarang</a>
-                {% endif %}
+                <h1>Berikan kontribusimu<br>untuk UI dan Indonesia!</h1>
+                <p style="color: #263238;">Ayo daftarkan dirimu untuk berkontribusi pada<br> kepanitiaan di Universitas Indonesia</p>
+                <a href="" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">M U L A I</a>
             </div>
-            <object class="only-desktop" data="{% static 'main/svg/Scrum-board-pana.svg' %}" type="image/svg+xml"></object>
+            <object class="only-desktop" data="{% static 'main/svg/homepage-svg1.svg' %}" type="image/svg+xml"></object>
             <div class="only-mobile">
-                <object data="{% static 'main/svg/Scrum-board-pana.svg' %}" type="image/svg+xml"></object>
+                <object data="{% static 'main/svg/homepage-svg1.svg' %}" type="image/svg+xml" style="max-width: 100%; width: 100%"></object>
                 <div class="only-mobile">
-                    <h1>Get your task done<br>By using SIT</h1>
-                    <p>Permudah segala urusanmu dengan Sistem Informasi Terintegrasi</p>
-                    {% if not request.user.is_authenticated %}
-                        <a href="" class="button fit-content">Login Sekarang</a>
-                    {% endif %}
+                    <h1>Berikan kontribusimu untuk UI dan Indonesia!</h1>
+                    <p style="color: #263238;">Ayo daftarkan dirimu untuk berkontribusi pada kepanitiaan di Universitas Indonesia</p>
+                    <a href="" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">M U L A I</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="home-middle">
         <div class="home-middle-top">
-            <object data="{% static 'main/svg/Mind-map-pana.svg' %}" type="image/svg+xml"></object>
+            <object data="{% static 'main/svg/Team work-amico 1.svg' %}" type="image/svg+xml"></object>
             <div>
-                <h2>Apa Itu Sistem Informasi Terintegrasi?</h2>
-                <p>Sistem Informasi Terintegrasi adalah suatu program kerja Biro Multimedia BEM UI dalam bentuk website untuk mempercepat dan mempermudah alur permintaan yang ada di internal BEM UI.</p>
+                <h2 style="color: #FF725E;">Apa Itu Sistem Perekrutan Terbuka?</h2>
+                <p style="color: #263238;">Sistem Perekrutan Terbuka (SPT) adalah sebuah wadah terintegrasi untuk kamu yang sedang membutuhkan tim untuk bergabung dengan suatu kegiatan atau organisasi, dan untuk kamu yang sedang mencari kegiatan atau organisasi untuk kamu ikuti. SPT memfasilitasi mahasiswa khususnya mahasiswa UI untuk mempermudah proses perekrutan dan pendaftaran.</p>
             </div>
         </div>
-        <div class="home-middle-middle">
-            <div class="only-desktop">
-                <h2>Kami menawarkan kemudahan</h2>
-                <p>Misi kami adalah untuk meningkatkan efisiensi, efektifitas, dan memberikan kemudahan bagi para fungsionaris BEM UI dan jajaran dibawahnya dalam melakukan permintaan.</p>
-                <ul>
-                    <li><p>Seluruh informasi terintegrasi dalam satu tempat<p></li>
-                    <li><p>Memudahkan tracking progress permintaan<p></li>
-                    <li><p>Meminimalisir miskomunikasi dalam proses alur permintaan<p></li>
-                </ul>
-            </div>
-            <object data="{% static 'main/svg/Features-Overview-pana.svg' %}" type="image/svg+xml"></object>
-            <div class="only-mobile">
-                <h2>Kami menawarkan kemudahan</h2>
-                <p>Misi kami adalah untuk meningkatkan efisiensi, efektifitas, dan memberikan kemudahan bagi para fungsionaris BEM UI dan jajaran dibawahnya dalam melakukan permintaan.</p>
-                <ul>
-                    <li><p>Seluruh informasi terintegrasi dalam satu tempat<p></li>
-                    <li><p>Memudahkan tracking progress permintaan<p></li>
-                    <li><p>Meminimalisir miskomunikasi dalam proses alur permintaan<p></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h1 class="home-features">Fitur Fitur</h1>
+        
+        <div id="jump-daftar">
             <div class="home-middle-bottom">
                  <div class="home-card-container">
                     <div class="home-card-top-blank"></div>
-                    <object data="{% static 'main/svg/Piggy-bank-pana.svg' %}" type="image/svg+xml"></object>
-                    <div class="home-card">
+                    <object data="{% static 'main/svg/Work time-cuate 1.svg' %}" type="image/svg+xml" style="max-width: 50%; width: 100%; " ></object>
+                    <div class="home-card" style="background-color:#FF725E">
                         <div class="only-desktop">
-                            <h2>Keuangan</h2>
-                            <p>Butuh melakukan permintaan reimburse, advanced, dan penyetoran?</p>
+                            <h2>DAFTAR SEBAGAI PESERTA?</h2>
+                            <p>Ayo berkontribusi dan temukan kegiatan yang menarik untuk kamu ikuti!</p>
                         </div>
                         <div class="only-mobile">
-                            <h2>Keuangan</h2>
+                            <h2>DAFTAR SEBAGAI PESERTA?</h2>
                         </div>
-                        <a href="" class="button fit-content">Telusuri</a>
+                        <a href="" class="button fit-content" style="background-color: #1C5188; padding: 10px 40px;">M U L A I</a>
                     </div>
                  </div>
                  <div class="home-card-container">
                     <div class="home-card-top-blank"></div>
-                    <object data="{% static 'main/svg/Content-pana.svg' %}" type="image/svg+xml"></object>
-                    <div class="home-card">
+                    <object data="{% static 'main/svg/Helping a partner-cuate 1.svg' %}" type="image/svg+xml" style="max-width: 50%; width: 100%;"></object>
+                    <br>
+                    <div class="home-card" style="background-color:#FF725E">
                         <div class="only-desktop">
-                            <h2>Publikasi</h2>
-                            <p>Butuh melakukan permintaan publikasi di kanal media BEM UI?</p>
+                            <h2>DAFTAR SEBAGAI PANITIA?</h2>
+                            <p>Buat kegiatan dan temukan tim terbaikmu!</p>
                         </div>
                         <div class="only-mobile">
-                            <h2>Publikasi</h2>
+                            <h2>DAFTAR SEBAGAI PANITIA?</h2>
                         </div>
-                        <a href="" class="button fit-content">Telusuri</a>
-                    </div>
-                 </div>
-                <div class="home-card-container">
-                    <div class="home-card-top-blank"></div>
-                    <object data="{% static 'main/svg/Mail-sent-pana.svg' %}" type="image/svg+xml"></object>
-                    <div class="home-card">
-                        <div class="only-desktop">
-                            <h2>Surat Menyurat</h2>
-                            <p>Ingin meminta persetujuan dan tanda tangan dari BEM UI?</p>
-                        </div>
-                        <div class="only-mobile">
-                            <h2>Surat Menyurat</h2>
-                        </div>
-                        <a href="" class="button fit-content">Telusuri</a>
-                    </div>
-                 </div>
-                 <div class="home-card-container">
-                    <div class="home-card-top-blank"></div>
-                    <object data="{% static 'main/svg/Customer-Survey-amico.svg' %}" type="image/svg+xml"></object>
-                    <div class="home-card">
-                        <div class="only-desktop">
-                            <h2>Survei</h2>
-                            <p>Membutuhkan survei untuk kepentingan penelitian dan pengembangan?</p>
-                        </div>
-                        <div class="only-mobile">
-                            <h2>Survei</h2>
-                        </div>
-                        <a href="" class="button fit-content">Telusuri</a>
+                        <a href="" class="button fit-content" style="background-color: #1C5188; padding: 10px 40px; ">M U L A I</a>
                     </div>
                  </div>
             </div>

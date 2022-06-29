@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from backend.CRUD.crud_user_peserta import user_peserta_create
+from backend.CRUD.crud_user_panitia import user_panitia_create
 from django.contrib import auth
 from backend.misc import firebase_init
 from backend.constants.fakultas import fakultas
@@ -15,7 +15,7 @@ fauth = firebase_init.firebaseInit().auth()
 	# })
 
 def postSignUp(request):
-	idPeserta = request.POST.get("username")
+	idPanitia = request.POST.get("username")
 	email = request.POST.get("email")
 	password = request.POST.get("password1")
 	password2 = request.POST.get("password2")
@@ -24,9 +24,10 @@ def postSignUp(request):
 	jurusan = request.POST.get("jurusan")
 	npm = request.POST.get("npm")
 	pas_foto = request.POST.get("pas_foto")
+    isPanitia = True
 	
 	if (password == password2):
-		message = user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto)
+		message = user_panitia_create(idPanitia, email, password, nama, fakultas, jurusan, npm, pas_foto, isPanitia)
 	if message == "":
 		return redirect("user:signin")
 	else:

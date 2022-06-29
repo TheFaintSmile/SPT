@@ -10,8 +10,8 @@ if not firebase_admin._apps:
 db = firestore.client()
 ds = storage.bucket()
 
-def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto) :
-    idPeserta = idPeserta+"-"+email
+def user_panitia_create(idPanitia, email, password, nama, fakultas, jurusan, npm, pas_foto, isPanitia) :
+    idPanitia = idPanitia+"-"+email
     try:
         user = auth.create_user(
             uid=email, email=email, email_verified=False, password=password)
@@ -23,39 +23,40 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
         message = 'The user with the provided username already exists'
         return message;
     data = {
-        'id': idPeserta,
+        'id': idPanitia,
         'email': email,
         'nama': nama,
         'fakultas' : fakultas,
         'jurusan' : jurusan,
         'npm' : npm,
-        'pas_foto' : pas_foto
+        'pas_foto' : pas_foto,
+        'isPanitia' : isPanitia
     }
-    db.collection('user_peserta').document(idPeserta).set(data)
+    db.collection('user_panitia').document(idPanitia).set(data)
     return "";
 
-def user_peserta_read(idPeserta):
-    data = db.collection('user_peserta').document(idPeserta).get()
+def user_panitia_read(idPanitia):
+    data = db.collection('user_panitia').document(idPanitia).get()
     print('Successfully fetched user data: {0}'.format(data))
     return data
 
-def user_peserta_update_email(idPeserta, email):
+def user_panitia_update_email(idPanitia, email):
     user = auth.update_user(
-        idPeserta,
+        idPanitia,
         email=email)
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_peserta_update_password(idPeserta, password):
+def user_panitia_update_password(idPanitia, password):
     user = auth.update_user(
-        idPeserta,
+        idPanitia,
         password=password)
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas_foto):
+def user_panitia_update_data(idPanitia, email, nama, fakultas, jurusan, npm, pas_foto):
     data = {
-        'id': idPeserta,
+        'id': idPanitia,
         'email': email,
         'nama': nama,
         'fakultas' : fakultas,
@@ -63,9 +64,9 @@ def user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas
         'npm' : npm,
         'pas_foto' : pas_foto
     }
-    db.collection('user_peserta').document(idPeserta).set(data)
+    db.collection('user_panitia').document(idPanitia).set(data)
     return data
 
-def user_peserta_delete(idPeserta):
-    auth.delete_user(idPeserta)
+def user_panitia_delete(idPanitia):
+    auth.delete_user(idPanitia)
     print('Successfully deleted user')

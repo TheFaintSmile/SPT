@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'dashboard_panitia',
     'dashboard_pendaftar',
     'backend',
-    'user_peserta'
+    'user_peserta',
+    'user_panitia',
 ]
 
 MIDDLEWARE = [

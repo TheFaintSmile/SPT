@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class UserConfig(AppConfig):
+class UserPanitiaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'User'
+    name = 'user_panitia'

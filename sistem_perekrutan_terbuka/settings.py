@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'dashboard_panitia',
     'dashboard_pendaftar',
     'homepage',
+    'User',
+
 
 ]
 

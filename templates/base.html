@@ -17,12 +17,12 @@
 
 <body>
 	<header class="header-white">
-        <a href="" class="logo"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:8.75rem; height:3.5rem;"></a>
+        <a href=" /" class="logo"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:8.75rem; height:3.5rem;"></a>
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
 
         <nav>
             <ul>
-                <li><a href="#jump-daftar">Daftar</a></li>
+                <li><a href="/#jump-daftar">Daftar</a></li>
                 <li><a href="">Perekrutan Terbuka</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="">Dashboard</a></li>
@@ -58,7 +58,7 @@
     <footer>
         <div class="footer-upper">
             <div class="footer1">
-                <a href=""><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:12.5rem; height:5rem;"></a>
+                <a href=" /"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:12.5rem; height:5rem;"></a>
             </div>
 
             <div class="footer2">
@@ -101,10 +101,10 @@
         <div class="footer-middle nav-only-desktop">
             <div class="footer1-middle footer-mid">
                 <strong>Daftar Akun</strong>
-                <a href="#jump-daftar" style="color:white; text-decoration: none;">
+                <a href="/#jump-daftar" style="color:white; text-decoration: none;">
                     <p>Peserta</p>
                 </a>
-                <a href="#jump-daftar" style="color:white; text-decoration: none;">
+                <a href="/#jump-daftar" style="color:white; text-decoration: none;">
                 <p>Panitia</p>
                 </a>
                 <br>

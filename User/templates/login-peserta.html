@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Masuk Sebagai Peserta</title>
+{% endblock meta %}
+
+{% block content %}
+<form action="postsignin" method="post">
+{% csrf_token %}
+    Email:
+    <input type="email" name="email"> <br/>
+    Password:
+    <input type="password" name="password"><br/>
+    <input type="submit" value="SignIn">
+</form>
+{% endblock content %}

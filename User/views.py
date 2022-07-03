@@ -7,8 +7,5 @@ def daftar_peserta (request):
 def daftar_panitia (request):
     return render(request, 'daftar-panitia.html')
 
-def login_peserta (request):
-    return render(request, 'login-peserta.html')
-
-def login_panitia (request):
-    return render(request, 'login-panitia.html')
+def login(request):
+    return render(request, 'login.html')

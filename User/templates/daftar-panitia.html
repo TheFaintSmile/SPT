@@ -2,82 +2,84 @@
 {% load static %}
 
 {% block meta %}
-    <title>Daftar Panitia</title>
+    <title>Daftar Sebagai Peserta</title>
+    <link rel="stylesheet" href="{% static 'user/css/style.css' %}"/>
+    <link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet"/>
 {% endblock meta %}
 
 {% block content %}
-<form action="postsignup" method="post">
-    {% csrf_token %}
-    Username:
-    <input type="username" name="username"> <br/>
+    <div class="content-root">
+        <div class="form-root">
+            <h1 id="judul-form">Kepanitiaan</h1>
+            <section>
+                <form action="postformkr" method="post" id="form">
+                    {% csrf_token %}
+                    <label for="nama-acara" >Nama Acara</label>
+                    <input type="text" id="nama-acara" name="nama_acara" placeholder="Masukkan nama acara..."> <br/>
+                    
+                    <label for="email">Email Acara</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan alamat email acara..."><br/>
 
-    Email:
-    <input type="email" name="email"><br/>
+                    <label for="kategori">Kategori</label>
+                    <input type="text" id="kategori" name="kategori placeholder="Masukkan kategori acara..."><br/>
 
-    Password:
-    <input type="password" name="password1"><br/>
+                    <label for="jumlah-divisi">Jumlah Divisi</label>
+                    <input type="number" id="jumlah-divisi" name="jumlah-divisi" placeholder="Masukkan jumlah divisi yang dibutuhkan..."><br/>
 
-    Confirm Password:
-    <input type="password" name="password2"><br/>
+                    <label for="password">Kata Sandi</label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi..."><br/>
 
-    Asal:
-    <select id="asal" name="asal" onchange="showBirdep(this)">
-        <option value="bem_ui">BEM UI</option>
-        <option value="paguyuban">Paguyuban</option>
-        <option value="kepanitiaan">Kepanitiaan</option>
-    </select><br/>
+                    <label for="retype-password">Ulangi Kata Sandi</label>
+                    <input type="password" id="retype-password" name="retype-password" placeholder="Masukkan ulang kata sandi..."><br/>
 
-    <div id="birdeptim">
-        Birdeptim
-        <select name="birdeptim" type="hidden">
-        <option value=100>Ketua BEM</option>
-        <option value=101>Wakil Ketua BEM"</option>
-        <option value=102>Kepala SPI</option>
-        <option value=103>Finance Controller</option>
-        <option value=104>Vice Finance Controller</option>
-        <option value=105>Treasurer</option>
-        <option value=106>Koorbid Internal</option>
-        <option value=107>Koorbid Kemahasiswaan</option>
-        <option value=108>Koorbid Sosial Politik</option>
-        <option value=109>Koorbid Sosial Lingkungan</option>
-        <option value=110>Koorbid Minat dan Bakat</option>
-        <option value=111>Kepala KKI</option>
-        <option value=200>Wakil Kepala Tim SPI</option>
-        <option value=201>Biro Multimedia</option>
-        <option value=202>Biro Desain Komunikasi dan Visual</option>
-        <option value=203>Biro Hubungan Masyarakat</option>
-        <option value=204>Biro Kesekretariatan</option>
-        <option value=205>Biro Pengembangan Sumber Daya Manusia</option>
-        <option value=206>Biro Penelitian dan Pengembangan</option>
-        <option value=207>Departemen Advokasi dan Kesejahteraan Mahasiswa</option>
-        <option value=208>Departemen Pemberdayaan dan Inovasi Mahasiswa</option>
-        <option value=209>Departemen Kajian Strategis</option>
-        <option value=210>Departemen Aksi dan Propaganda</option>
-        <option value=211>Departemen Sosial Masyarakat</option>
-        <option value=212>Departemen Lingkungan Hidup</option>
-        <option value=213>Departemen Seni dan Budaya</option>
-        <option value=214>Departemen Olahraga</option>
-        <option value=215>Departemen Pendidikan dan Keilmuan</option>
-        <option value=216>Biro Keuangan</option>
-    </select>
+                </form>
+
+                <p>Sudah punya akun?  <a href="login" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>
+               
+                <button type="button" class="button" id="submitbutton">DAFTAR</button>
+
+                <div class="filler"></div>
+
+                <!-- Script upload ke Bukti Pembayaran-->
+                <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+                <script>
+                    var uppy = new Uppy.Core()
+
+                    uppy.on('file-added', (file) => {
+                        uppy.setFileMeta(file.id, {
+                            id_firebase: "KEUANGAN_REIMBURSE/BUKTI_PEMBAYARAN/" + uuidv4(),
+                        })
+                    })
+                    uppy.use(Uppy.XHRUpload, {
+                        endpoint: '',
+                        headers: {'X-CSRFToken':"{{csrf_token}}"},
+                        formData: true,
+                        fieldName: 'file'
+                    })
+                    uppy.use(Uppy.Dashboard, {
+                        inline: true,
+                        target: '#drag-drop-area',
+                        proudlyDisplayPoweredByUppy:false,
+                        showProgressDetails:true,
+                        doneButtonHandler: null,
+                        hideUploadButton: true,
+                    })
+                    uppy.on('complete', (result) => {
+                        console.log('Upload complete! We’ve uploaded these files:', result.successful)
+                    })
+                    uppy.use(Uppy.Form, {
+                        target: "#form",
+                        resultName: 'uploadFiles',
+                        getMetaFromForm: false,
+                        addResultToForm: true,
+                        submitOnSuccess: true,
+                        triggerUploadOnSubmit: false,
+                    })
+                </script>
+                <script type="application/javascript" src="{% static 'reimbursement/js/scripts.js' %}"></script>
+                <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+            </section>
+        </div>
+    <object class="object only-desktop" data="{% static 'User/svg/Sign up-pana 1.svg' %}" type="image/svg+xml"></object>
     </div>
-
-    Nama:
-    <input type="name" name="nama"><br/>
-
-    Panggilan:
-    <input type="name" name="panggilan"><br/>
-    <input type="submit" value="SignUp">
-</form>
-    <script>
-        function showBirdep(s) {
-          var tag = document.getElementById("birdeptim");
-          if (s.value == 'bem_ui') {
-              tag.style.visibility = "visible";
-          }
-          else tag.style.visibility = 'hidden';
-        }
-    </script>
-
 {% endblock content %}
-

@@ -6,6 +6,6 @@ from User.views import daftar_panitia, daftar_peserta, login
 urlpatterns = [
     path('daftar-peserta', daftar_peserta, name='daftar_peserta'),
     path('daftar-panitia', daftar_panitia, name='daftar_panitia'),
-    path('login-all', login, name='login'),
+    path('login', login, name='login'),
 
 ]

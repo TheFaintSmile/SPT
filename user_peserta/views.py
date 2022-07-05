@@ -4,15 +4,16 @@ from django.contrib import auth
 from backend.misc import firebase_init
 from backend.constants.fakultas import fakultas
 from backend.constants.jurusan import jurusan
+import json
 
 fauth = firebase_init.firebaseInit().auth()
 
-# def signUp(request):
-	# return render(request, 'signUp.html', {
-	# 	"pi": pi,
-	# 	"birdeptim": birdeptim,
-	# 	"kode_fungsionaris": kode_fungsionaris
-	# })
+def signUp(request):
+	return render(request, 'signUp.html', {
+		"pi": pi,
+		"birdeptim": birdeptim,
+		"kode_fungsionaris": kode_fungsionaris
+	})
 
 def postSignUp(request):
 	idPeserta = request.POST.get("username")
@@ -23,10 +24,26 @@ def postSignUp(request):
 	fakultas = request.POST.get("fakultas")
 	jurusan = request.POST.get("jurusan")
 	npm = request.POST.get("npm")
-	pas_foto = request.POST.get("pas_foto")
+	photos = request.POST.get("uploadFiles")
+	photos = json.loads(photos)
 	
 	if (password == password2):
-		message = user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto)
+		if photos[0]["successful"]:
+        	pas_foto = []
+        	for i in photos[0]["successful"]:
+            	pas_foto.append(i["meta"]["id_firebase"])
+        	# message = kr_create(request, judul, nama_kegiatan, deskripsi, norek, anrek, voucher, nominal, photos_meta)
+			message = user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto)
+        	if message != "there is error":
+            	# return redirect("/reimbursement/detail/" + message)
+				return redirect("user:signin")
+        	else:
+            	message = "Gagal Upload"
+            	return redirect("user:signup")
+    	else:
+        	message = "Gagal Upload"
+        	return redirect("user:signup")
+		
 	if message == "":
 		return redirect("user:signin")
 	else:

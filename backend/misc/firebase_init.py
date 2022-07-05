@@ -1,4 +1,3 @@
-from distutils.command.config import config
 import pyrebase
 
 def firebaseInit():
@@ -10,7 +9,8 @@ def firebaseInit():
         "storageBucket": "spt-bemui-2add1.appspot.com",
         "messagingSenderId": "826235535572",
         "appId": "1:826235535572:web:d8bdeda2059d2a3074fb41",
-        "measurementId": "G-GWLCVVZCRL"
+        "measurementId": "G-GWLCVVZCRL",
+        "databaseURL": ""
     }
     
     return pyrebase.initialize_app(config)

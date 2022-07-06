@@ -4,12 +4,17 @@ const dictJurusan = {'fk':'jurusan-fk', 'fkg':'jurusan-fkg', 'fkm':'jurusan-fkm'
 function showJurusan(s) {
     for (var i in dictJurusan) {
         var tag = document.getElementById(dictJurusan[i]);
-        tag.style.visibility = 'hidden';
+        tag.style.display = 'none';
+        document.getElementById("jurusan").style.display = 'none'
+        document.getElementById("label-jurusan").style.display = 'none'
+
     }
     for (const key in dictJurusan) {
         if (s.value == key) {
             var tag = document.getElementById(dictJurusan[key]);
-            tag.style.visibility = "visible";
+            tag.style.display = "block";
+            document.getElementById("jurusan").style.display = 'block'
+            document.getElementById("label-jurusan").style.display = 'block'
         }
     }
     console.log("yesus");

@@ -240,6 +240,11 @@
 		margin: 1em;
 	}
 
+	.home-card-container {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
 	.home-middle-bottom .home-card div {
 		margin-bottom: 0;
 	}
@@ -255,6 +260,10 @@
 	.home-middle-bottom object {
 	width: 75%;
 	}
+
+	/* .gambar-home-bottom {
+		max-width: 75%;
+	} */
 
 	.only-desktop {
 		display: block;

@@ -22,6 +22,8 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
     except auth.UidAlreadyExistsError:
         message = 'The user with the provided username already exists'
         return message;
+    except :
+        return "there is error"
     data = {
         'id': idPeserta,
         'email': email,

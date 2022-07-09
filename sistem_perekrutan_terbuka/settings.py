@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard_panitia',
     'dashboard_pendaftar',
+    'homepage',
+    'User',
     'backend',
     'user_peserta',
     'user_panitia',
@@ -59,7 +61,9 @@ ROOT_URLCONF = 'sistem_perekrutan_terbuka.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,9 +124,18 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# This is the directory for storing collectstatic results.
+# This shouldn't be included in your Git repository.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# You can use this directory to store project-wide static files.
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

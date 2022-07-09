@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <meta charset="UTF-8">
+    <title>Sistem Perekrutan Terbuka</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script type="application/javascript" src="{% static 'main/js/script.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+<div class="content-home">
+    <div class="home-top">
+        <div class="home-top-color-filter">
+            <div class="only-desktop">
+                <h1>Berikan kontribusimu<br>untuk UI dan Indonesia!</h1>
+                <p style="color: #263238;">Ayo daftarkan dirimu untuk berkontribusi pada<br> kepanitiaan di Universitas Indonesia</p>
+                <a href="/#jump-daftar" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">D A F T A R</a>
+            </div>
+            <object class="only-desktop" data="{% static 'main/svg/homepage-svg1.svg' %}" type="image/svg+xml"></object>
+            <div class="only-mobile">
+                <object data="{% static 'main/svg/homepage-svg1.svg' %}" type="image/svg+xml" style="max-width: 100%; width: 100%"></object>
+                <div class="only-mobile">
+                    <h1>Berikan kontribusimu untuk UI dan Indonesia!</h1>
+                    <p style="color: #263238;">Ayo daftarkan dirimu untuk berkontribusi pada kepanitiaan di Universitas Indonesia</p>
+                    <a href="/#jump-daftar" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">D A F T A R</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home-middle">
+        <div class="home-middle-top">
+            <object data="{% static 'main/svg/Team work-amico 1.svg' %}" type="image/svg+xml"></object>
+            <div>
+                <h2 style="color: #FF725E;">Apa Itu Sistem Perekrutan Terbuka?</h2>
+                <p style="color: #263238;">Sistem Perekrutan Terbuka (SPT) adalah sebuah wadah terintegrasi untuk kamu yang sedang membutuhkan tim untuk bergabung dengan suatu kegiatan atau organisasi, dan untuk kamu yang sedang mencari kegiatan atau organisasi untuk kamu ikuti. SPT memfasilitasi mahasiswa khususnya mahasiswa UI untuk mempermudah proses perekrutan dan pendaftaran.</p>
+            </div>
+        </div>
+        
+        <div id="jump-daftar">
+            <div class="home-middle-bottom">
+                 <div class="home-card-container">
+                    <div class="home-card-top-blank"></div>
+                    <div class="gambar-home-bottom">
+                        <object data="{% static 'main/svg/Work time-cuate 1.svg' %}" type="image/svg+xml" style="max-width: 50%; width: 100%; " ></object>
+                    </div>
+                    <div class="home-card" style="background-color:#FF725E">
+                        <div class="only-desktop">
+                            <h2>DAFTAR SEBAGAI PESERTA?</h2>
+                            <p>Ayo berkontribusi dan temukan kegiatan yang menarik untuk kamu ikuti!</p>
+                        </div>
+                        <div class="only-mobile">
+                            <h2>DAFTAR SEBAGAI PESERTA?</h2>
+                        </div>
+                        <a href="user/daftar-peserta" class="button fit-content" style="background-color: #1C5188; padding: 10px 40px;">M U L A I</a>
+                    </div>
+                 </div>
+                 <div class="home-card-container">
+                    <div class="home-card-top-blank"></div>
+                    <div class="gambar-home-bottom">
+                        <object data="{% static 'main/svg/Helping a partner-cuate 1.svg' %}" type="image/svg+xml" style="max-width: 50%; width: 100%;"></object>
+                    </div>
+                    <div class="home-card" style="background-color:#FF725E">
+                        <div class="only-desktop">
+                            <h2>DAFTAR SEBAGAI PANITIA?</h2>
+                            <p>Buat kegiatan dan temukan tim terbaikmu!</p>
+                        </div>
+                        <div class="only-mobile">
+                            <h2>DAFTAR SEBAGAI PANITIA?</h2>
+                        </div>
+                        <a href="user/daftar-panitia" class="button fit-content" style="background-color: #1C5188; padding: 10px 40px; ">M U L A I</a>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

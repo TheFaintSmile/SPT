@@ -41,9 +41,14 @@ INSTALLED_APPS = [
     'dashboard_pendaftar',
     'homepage',
     'User',
+<<<<<<< HEAD
     'backend',
     'user_peserta',
     'user_panitia',
+=======
+
+
+>>>>>>> bdc749e5eecd3d6d25dc4e90499784802be14fe8
 ]
 
 MIDDLEWARE = [

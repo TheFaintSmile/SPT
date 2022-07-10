@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Daftar Sebagai Panitia</title>
+    <link rel="stylesheet" href="{% static 'user/css/style.css' %}"/>
+    <link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet"/>
+{% endblock meta %}
+
+{% block content %}
+    <div class="content-root">
+        <div class="form-root">
+            <h1 id="judul-form">Kepanitiaan</h1>
+            <section>
+                <form action="postformkr" method="post" id="form">
+                    {% csrf_token %}
+                    <label for="nama-acara" >Nama Acara</label>
+                    <input type="text" id="nama-acara" name="nama_acara" placeholder="Masukkan nama acara..."> <br/>
+                    
+                    <label for="email">Email Acara</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan alamat email acara..."><br/>
+
+                    <label for="kategori">Kategori</label>
+                    <input type="text" id="kategori" name="kategori placeholder="Masukkan kategori acara..."><br/>
+
+                    <label for="jumlah-divisi">Jumlah Divisi</label>
+                    <input type="number" id="jumlah-divisi" name="jumlah-divisi" placeholder="Masukkan jumlah divisi yang dibutuhkan..."><br/>
+
+                    <label for="password">Kata Sandi</label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi..."><br/>
+
+                    <label for="retype-password">Ulangi Kata Sandi</label>
+                    <input type="password" id="retype-password" name="retype-password" placeholder="Masukkan ulang kata sandi..."><br/>
+
+                </form>
+
+                <p>Sudah punya akun?  <a href="login" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>
+               
+                <button type="button" class="button" id="submitbutton">DAFTAR</button>
+
+                <div class="filler"></div>
+
+            </section>
+        </div>
+    <object class="object only-desktop" data="{% static 'User/svg/Sign up-pana 1.svg' %}" type="image/svg+xml" style="padding-top: 200px; padding-bottom: 10px"></object>
+    </div>
+{% endblock content %}

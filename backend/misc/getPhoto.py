@@ -1,4 +1,3 @@
-from django.http import JsonResponse
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
 from backend.misc import firebase_init

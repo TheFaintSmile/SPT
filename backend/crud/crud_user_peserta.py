@@ -14,7 +14,7 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
     idPeserta = idPeserta+"-"+email
     try:
         user = auth.create_user(
-            uid=email, email=email, email_verified=False, password=password)
+            uid=idPeserta, email=email, email_verified=False, password=password)
         print('Sucessfully created new user: {0}'.format(user.uid))
     except auth.EmailAlreadyExistsError:
         message = 'The user with the provided email already exists'
@@ -37,8 +37,8 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
     return "";
 
 def user_peserta_read(idPeserta):
-    data = db.collection('user_peserta').document(idPeserta).get()
-    print('Successfully fetched user data: {0}'.format(data))
+    data = db.collection('user_peserta').document(idPeserta).get().to_dict()
+    print(data)
     return data
 
 def user_peserta_update_email(idPeserta, email):

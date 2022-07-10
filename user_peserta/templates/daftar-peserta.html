@@ -3,7 +3,7 @@
 
 {% block meta %}
     <title>Daftar Sebagai Peserta</title>
-    <link rel="stylesheet" href="{% static 'user/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'user_peserta/css/style.css' %}"/>
     <link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 {% endblock meta %}
@@ -13,7 +13,7 @@
         <div class="form-root">
             <h1 id="judul-form">Calon Peserta</h1>
             <section>
-                <form action="postformkr" method="post" id="form">
+                <form action="postsignup" method="post" id="form">
                     {% csrf_token %}
                     <label for="nama-lengkap" >Nama Lengkap</label>
                     <input type="text" id="nama-lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap Anda..."> <br/>
@@ -40,25 +40,25 @@
 
                     <label for="jurusan" id="label-jurusan" style="display: none;" >Jurusan</label>
                     <div id="jurusan" style="display: none;">
-                        <select id="jurusan-fk">
+                        <select id="jurusan-fk" name="jurusan">
                             <option value=100>Ilmu Kedokteran</option>
                         </select>
-                        <select id="jurusan-fkg">
+                        <select id="jurusan-fkg" name="jurusan">
                             <option value=200>Kedokteran Gigi</option>
                         </select>
-                        <select id="jurusan-fkm">
+                        <select id="jurusan-fkm" name="jurusan">
                             <option value=300>Gizi</option>
                             <option value=301>Kesehatan Lingkungan</option>
                             <option value=302>Keselamatan dan Kesehatan Kerja</option>
                             <option value=303>Kesehatan Masyarakat</option>
                         </select>
-                        <select id="jurusan-ff">
+                        <select id="jurusan-ff" name="jurusan">
                             <option value=400>Ilmu Farmasi</option>
                         </select>
-                        <select id="jurusan-fik">
+                        <select id="jurusan-fik" name="jurusan">
                             <option value=500>Ilmu Keperawatan</option>
                         </select>
-                        <select id="jurusan-fmipa">
+                        <select id="jurusan-fmipa" name="jurusan">
                             <option value=600>Matematika</option>
                             <option value=601>Kimia</option>
                             <option value=602>Fisika</option>
@@ -69,11 +69,11 @@
                             <option value=607>Statistika</option>
                             <option value=608>Aktuaria</option>
                         </select>
-                        <select id="jurusan-fasilkom">
+                        <select id="jurusan-fasilkom" name="jurusan">
                             <option value=700>Ilmu Komputer</option>
                             <option value=701>Sistem Informasi</option>
                         </select>
-                        <select id="jurusan-ft">
+                        <select id="jurusan-ft" name="jurusan">
                             <option value=800>Teknik Sipil</option>
                             <option value=801>Teknik Lingkungan</option>
                             <option value=802>Teknik Mesin</option>
@@ -85,10 +85,10 @@
                             <option value=808>Arsitektur Interior</option>
                             <option value=809>Biro Keuangan</option>
                         </select>
-                        <select id="jurusan-fh">
+                        <select id="jurusan-fh" name="jurusan">
                             <option value=900>Ilmu Hukum</option>
                         </select>
-                        <select id="jurusan-fisip">
+                        <select id="jurusan-fisip" name="jurusan">
                             <option value=1000>Ilmu Komunikasi</option>
                             <option value=1001>Ilmu Politik</option>
                             <option value=1002>Kriminologi</option>
@@ -97,7 +97,7 @@
                             <option value=1005>Antropologi Sosial</option>
                             <option value=1006>Hubungan Internasional</option>
                         </select>
-                        <select id="jurusan-fib">
+                        <select id="jurusan-fib" name="jurusan">
                             <option value=1100>Arkeologi</option>
                             <option value=1101>Sejarah</option>
                             <option value=1102>Ilmu Filsafat</option>
@@ -114,19 +114,19 @@
                             <option value=1113>Sastra Rusia</option>
                             <option value=1114>Sastra Arab</option>
                         </select>
-                        <select id="jurusan-feb">
+                        <select id="jurusan-feb" name="jurusan">
                             <option value=1200>Ilmu Ekonomi</option>
                             <option value=1201>Manajemen</option>
                             <option value=1202>Akuntansi</option>
                             <option value=1203>Ilmu Ekonomi Islam</option>
                             <option value=1204>Bisnis Islam</option>
                         </select>
-                        <select id="jurusan-fia">
+                        <select id="jurusan-fia" name="jurusan">
                             <option value=1300>Ilmu Administrasi Negara</option>
                             <option value=1301>Ilmu Administrasi Niaga</option>
                             <option value=1302>Ilmu Administrasi Fiskal</option>
                         </select>
-                        <select id="jurusan-vokasi">
+                        <select id="jurusan-vokasi" name="jurusan">
                             <option value=1400>Administrasi Asuransi dan Aktuaria</option>
                             <option value=1401>Administrasi Keuangan dan Perbankan</option>
                             <option value=1402>Administrasi Perkantoran dan Sekretari</option>
@@ -164,20 +164,20 @@
 
                 </form>
 
-                <p>Sudah punya akun?  <a href="login" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>
+                <p>Sudah punya akun?  <a href="signin" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>
                
                 <button type="button" class="button" id="submitbutton">DAFTAR</button>
 
                 <div class="filler"></div>
 
-                <!-- Script upload ke Bukti Pembayaran-->
+                <!-- Script upload ke Foto Peserta-->
                 <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
                 <script>
                     var uppy = new Uppy.Core()
 
                     uppy.on('file-added', (file) => {
                         uppy.setFileMeta(file.id, {
-                            id_firebase: "KEUANGAN_REIMBURSE/BUKTI_PEMBAYARAN/" + uuidv4(),
+                            id_firebase: "USER_PESERTA/PAS_FOTO/" + uuidv4(),
                         })
                     })
                     uppy.use(Uppy.XHRUpload, {
@@ -206,13 +206,14 @@
                         triggerUploadOnSubmit: false,
                     })
                 </script>
-                <script type="application/javascript" src="{% static 'user/js/dropdown-jurusan.js' %}"></script>
+                <script type="application/javascript" src="{% static 'user_peserta/js/dropdown-jurusan.js' %}"></script>
+                <script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
                 <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
                 <script>
                     $('select option:first-child').attr("selected", "selected");
                 </script>
             </section>
         </div>
-    <object class="object only-desktop" data="{% static 'User/svg/Sign up-pana 1.svg' %}" type="image/svg+xml"></object>
+    <object class="object only-desktop" data="{% static 'user_peserta/svg/Sign up-pana 1.svg' %}" type="image/svg+xml"></object>
     </div>
 {% endblock content %}

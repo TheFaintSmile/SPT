@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from backend.CRUD.crud_user_peserta import user_peserta_create
+from backend.crud.crud_user_peserta import user_peserta_create
 from django.contrib import auth
 from backend.misc import firebase_init
 from backend.constants.fakultas import fakultas
@@ -9,48 +9,35 @@ import json
 fauth = firebase_init.firebaseInit().auth()
 
 def signUp(request):
-	return render(request, 'signUp.html', {
-		"pi": pi,
-		"birdeptim": birdeptim,
-		"kode_fungsionaris": kode_fungsionaris
-	})
+	return render(request, 'daftar-peserta.html')
 
 def postSignUp(request):
-	idPeserta = request.POST.get("username")
-	email = request.POST.get("email")
-	password = request.POST.get("password1")
-	password2 = request.POST.get("password2")
-	nama = request.POST.get("nama")
+	idPeserta = request.POST.get("nama_lengkap")
+	nama = request.POST.get("nama_lengkap")
 	fakultas = request.POST.get("fakultas")
 	jurusan = request.POST.get("jurusan")
+	email = request.POST.get("email")
 	npm = request.POST.get("npm")
+	password = request.POST.get("password")
+	password2 = request.POST.get("retype-password")
 	photos = request.POST.get("uploadFiles")
 	photos = json.loads(photos)
 	
 	if (password == password2):
-		if photos[0]["successful"]:
-        	pas_foto = []
-        	for i in photos[0]["successful"]:
-            	pas_foto.append(i["meta"]["id_firebase"])
-        	# message = kr_create(request, judul, nama_kegiatan, deskripsi, norek, anrek, voucher, nominal, photos_meta)
+		# Upload data to firebase
+		if photos[0]["successful"] :
+			pas_foto = []
+			for i in photos[0]["successful"] :
+				pas_foto.append(i["meta"]["id_firebase"])
 			message = user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto)
-        	if message != "there is error":
-            	# return redirect("/reimbursement/detail/" + message)
-				return redirect("user:signin")
-        	else:
-            	message = "Gagal Upload"
-            	return redirect("user:signup")
-    	else:
-        	message = "Gagal Upload"
-        	return redirect("user:signup")
-		
-	if message == "":
-		return redirect("user:signin")
-	else:
-		return redirect("user:signup")
+			# Sign Up User
+			if message == "" :
+				return redirect("user_peserta:signin")
+			else :
+				return redirect("user_peserta:signup")
 
 def signIn(request):
-	return render(request, 'signIn.html')
+	return redirect('user/login')
 
 def postSignIn(request):
 	email = request.POST.get("email")
@@ -66,5 +53,5 @@ def postSignIn(request):
 
 def logout(request):
 	auth.logout(request)
-	return redirect("user:signin")
+	return redirect("user_peserta:signin")
 

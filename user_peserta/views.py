@@ -37,19 +37,7 @@ def postSignUp(request):
 				return redirect("user_peserta:signup")
 
 def signIn(request):
-	return redirect('user/login')
-
-def postSignIn(request):
-	email = request.POST.get("email")
-	password = request.POST.get("password")
-	try:
-		user = fauth.sign_in_with_email_and_password(email, password)
-	except:
-		return redirect(signIn)
-	print(fauth.current_user)
-	session_id = user['idToken']
-	request.session['uid'] = str(session_id)
-	return redirect('/')
+	return redirect('/user/login')
 
 def logout(request):
 	auth.logout(request)

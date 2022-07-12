@@ -181,7 +181,7 @@
                         })
                     })
                     uppy.use(Uppy.XHRUpload, {
-                        endpoint: '',
+                        endpoint: '{% url "upload_photo" %}',
                         headers: {'X-CSRFToken':"{{csrf_token}}"},
                         formData: true,
                         fieldName: 'file'

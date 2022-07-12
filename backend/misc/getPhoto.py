@@ -8,14 +8,10 @@ if not firebase_admin._apps:
     'storageBucket' : 'spt-bemui-2add1.appspot.com'
     })
 
-# firebase = firebase_init.firebaseInit()
-# fstorage = firebase.storage()
-# fauth = firebase_init.firebaseInit().auth()
 db = firestore.client()
 ds = storage.bucket()
 
-def getPhoto(url):
+def getPhoto(id):
     blob = ds.blob(id)
     blob.make_public()
     return blob.public_url
-    # return fstorage.child(url).get_url(None)

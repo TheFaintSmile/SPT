@@ -6,7 +6,7 @@ from backend.constants.fakultas import fakultas
 from backend.constants.jurusan import jurusan
 import json
 
-fauth = firebase_init.firebaseInit().auth()
+fauth = firebase_init
 
 def signUp(request):
 	return render(request, 'daftar-peserta.html')

@@ -23,7 +23,7 @@ urlpatterns = [
     path('user/', include('User.urls')),
     # path('user/', include(('User.urls', 'user'), namespace='user')),
     path('user_peserta/', include(('user_peserta.urls', 'user_peserta'), namespace='user_peserta')),
+    path('user_panitia/', include(('user_panitia.urls', 'user_panitia'), namespace='user_panitia')),
     path('backend/', include('backend.urls')),
-    
     
 ]

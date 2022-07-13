@@ -5,9 +5,6 @@ from backend.misc import firebase_init
 fauth = firebase_init
 # Create your views here.
 
-def daftar_panitia (request):
-    return render(request, 'daftar-panitia.html')
-
 def login(request):
     return render(request, 'login.html')
 

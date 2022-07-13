@@ -10,11 +10,11 @@ if not firebase_admin._apps:
 db = firestore.client()
 ds = storage.bucket()
 
-def user_panitia_create(idPanitia, email, password, nama, fakultas, jurusan, npm, pas_foto, isPanitia) :
+def user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divisi) :
     idPanitia = idPanitia+"-"+email
     try:
         user = auth.create_user(
-            uid=email, email=email, email_verified=False, password=password)
+            uid=idPanitia, email=email, email_verified=False, password=password)
         print('Sucessfully created new user: {0}'.format(user.uid))
     except auth.EmailAlreadyExistsError:
         message = 'The user with the provided email already exists'
@@ -22,17 +22,24 @@ def user_panitia_create(idPanitia, email, password, nama, fakultas, jurusan, npm
     except auth.UidAlreadyExistsError:
         message = 'The user with the provided username already exists'
         return message;
+    
+    # save to collection user_panitia
     data = {
         'id': idPanitia,
-        'email': email,
         'nama': nama,
-        'fakultas' : fakultas,
-        'jurusan' : jurusan,
-        'npm' : npm,
-        'pas_foto' : pas_foto,
-        'isPanitia' : isPanitia
+        'email': email,
+        'kategori' : kategori,
+        'jumlah_divisi' : jumlah_divisi,
+        'isPanitia' : True
     }
     db.collection('user_panitia').document(idPanitia).set(data)
+
+    # save to collection user_peserta
+    data_peserta = {
+        'id': idPanitia,
+        'isPanitia' : True
+    }
+    db.collection('user_peserta').document(idPanitia).set(data_peserta)
     return "";
 
 def user_panitia_read(idPanitia):
@@ -54,15 +61,14 @@ def user_panitia_update_password(idPanitia, password):
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_panitia_update_data(idPanitia, email, nama, fakultas, jurusan, npm, pas_foto):
+def user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi):
     data = {
         'id': idPanitia,
-        'email': email,
         'nama': nama,
-        'fakultas' : fakultas,
-        'jurusan' : jurusan,
-        'npm' : npm,
-        'pas_foto' : pas_foto
+        'email': email,
+        'kategori' : kategori,
+        'jumlah_divisi' : jumlah_divisi,
+        'isPanitia' : True
     }
     db.collection('user_panitia').document(idPanitia).set(data)
     return data

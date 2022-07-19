@@ -15,7 +15,7 @@
             <section>
                 <form action="postsignup" method="post" id="form">
                     {% csrf_token %}
-                    <label for="nama-lengkap" >Nama Lengkap</label>
+                    <label for="nama-lengkap">Nama Lengkap</label>
                     <input type="text" id="nama-lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap Anda..."> <br/>
 
                     <label for="Fakultas" >Fakultas</label>
@@ -160,10 +160,18 @@
                     <br/>
 
                     <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi..."><br/>
+                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi..." >
+                    <span>
+                        <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+                    </span>
+                    <br/>
 
                     <label for="retype-password">Ulangi Kata Sandi</label>
-                    <input type="password" id="retype-password" name="retype-password" placeholder="Masukkan ulang kata sandi..."><br/>
+                    <input type="password" id="retype-password" name="password" placeholder="Masukkan ulang kata sandi...">
+                    <span>
+                        <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle2()"></i>
+                    </span>
+                    <br/>
 
                     <label class="control-label">Unggah Pas Foto</label>
                     <div class="uppy" id="drag-drop-area"></div>
@@ -179,7 +187,6 @@
                 <button type="button" class="button" id="submitbutton">DAFTAR</button>
 
                 <div class="filler"></div>
-
                 <!-- Script upload ke Foto Peserta-->
                 <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
                 <script>
@@ -223,6 +230,32 @@
                     $('select option:first-child').attr("selected", "selected");
                 </script>
             </section>
+            <script>
+                var state= false;
+                function toggle(){
+                    if(state){
+                        document.getElementById("password").setAttribute("type", "password");
+                        document.getElementById("eye").style.color='#7a797e';
+                        state=false;
+                    }
+                    else{
+                        document.getElementById("password").setAttribute("type", "text");
+                        state=true;
+                    }
+                }
+                var state2 = false;
+                function toggle2(){
+                    if(state2){
+                        document.getElementById("retype-password").setAttribute("type", "password");
+                        document.getElementById("eye").style.color='#7a797e';
+                        state2=false;
+                    }
+                    else{
+                        document.getElementById("retype-password").setAttribute("type", "text");
+                        state2=true;
+                    }
+                }
+            </script>
         </div>
     <object class="object only-desktop" data="{% static 'user_peserta/svg/Sign up-pana 1.svg' %}" type="image/svg+xml"></object>
     </div>

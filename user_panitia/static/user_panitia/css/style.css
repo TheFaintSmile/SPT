@@ -114,5 +114,7 @@ select {
         float: right;
         width: 100%;
     }
-    
+    span{
+        padding-left: 700px;
+    }
 }

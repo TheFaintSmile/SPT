@@ -46,6 +46,7 @@ select {
     width: 85vw;
 }
 
+
 @media only screen and (min-width: 800px) {
     .form-root{
         grid-column: 2/3;
@@ -114,5 +115,7 @@ select {
         float: right;
         width: 100%;
     }
-    
+    span{
+        padding-left: 700px;
+    }
 }

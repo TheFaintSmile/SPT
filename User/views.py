@@ -19,4 +19,10 @@ def postSignIn(request):
 	print("berhasil login")
 	session_id = user['idToken']
 	request.session['uid'] = str(session_id)
+	request.session['nama'] = str(user['localId'].split(' ')[0])
+	print(request.session['nama'])
 	return redirect('/')
+
+def logout(request):
+	auth.logout(request)
+	return redirect("/user/login")

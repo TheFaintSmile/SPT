@@ -1,4 +1,5 @@
 {% load static %}
+{% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +26,7 @@
             <ul>
                 <li><a href="/#jump-daftar">Daftar</a></li>
                 <li><a href="">Perekrutan Terbuka</a></li>
-                {% if request.user.is_authenticated %}
+                {% if request.session.uid %}
                     <li><a href="">Dashboard</a></li>
                     <li>
                         <a href="" class="logo" style="color:#49B5CD;"><i class="material-symbols-outlined" style="font-size:30px;color:#49B5CD;text-shadow:0.1px 0.1px 0.1px #000000; margin-right: 5px;">account_circle</i>Radit</a>
@@ -34,7 +35,7 @@
                         <a href="" class="logo" style="color:#144B84"><i class="material-symbols-outlined" style="font-size:30px;color:#144B84;text-shadow:0.1px 0.1px 0.1px #000000; margin-right: 5px;">logout</i>Keluar</a>
                     </li>
                 {% endif %}
-                {% if not request.user.is_authenticated %}
+                {% if not request.session.uid %}
                 <li class="nav-only-desktop">
                     <a href="/user/login" class="button fit-content" style="height: fit-content; margin: 0; padding: 0.6em 1em;">Masuk</a>
                 </li>

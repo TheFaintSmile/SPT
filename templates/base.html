@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
-  <link rel="shortcut icon" href="{% static 'base/img/favicon.png' %}"/>
+  <link rel="shortcut icon" href="{% static 'base/img/SPT - Polos no BG.png' %}"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -18,8 +18,8 @@
 </head>
 
 <body>
-	<header class="header-white">
-        <a href=" /" class="logo"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:8.75rem; height:3.5rem;"></a>
+	<div class="header-white navigation" style="display: flex; justify-content: space-between; position: fixed; background-color: white; width: 100%; z-index: 99999999; padding: ;">
+        <a href=" /" class="logo"><img src="{% static 'base/img/SPT - Logo no BG.png' %}" style="width:8.75rem; height:3.5rem; "></a>
         <input type="checkbox" class="nav-toggle" id="nav-toggle">
 
         <nav>
@@ -50,7 +50,7 @@
 
         <label for="nav-toggle" class="nav-toggle-label" id="nav-toggle-label"><span></span></label>
 
-    </header>
+    </div>
 
     <div class="content-container">
       	{% block content %}
@@ -60,7 +60,7 @@
     <footer>
         <div class="footer-upper">
             <div class="footer1">
-                <a href=" /"><img src="{% static 'base/img/logo-biro-jodoh.png' %}" style="width:12.5rem; height:5rem;"></a>
+                <a href=" /"><img src="{% static 'base/img/SPT - Logo Putih.png' %}" style="width:12.5rem; height:5rem;"></a>
             </div>
 
             <div class="footer2">

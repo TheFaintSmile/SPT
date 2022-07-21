@@ -9,19 +9,25 @@
 
 {% block content %}
 <div class="content dashboard-content">
-	<h1>Dashboard Peserta</h1>
-	<div class="dashboard-nav">
-			<a class="dashboard-home" href=""></a>
-			<div class="dashboard-nav-akun">
-				<h2>Edi Suredi</h2>
-				<br>
-				<p>Sistem Informasi</p>
-				<p>Fakultas Ilmu Komputer</p>
-				<br>
+	<h1 style="padding-top: 20px; padding-left: 20px; margin-bottom: 5px;">Dashboard Peserta</h1>
+	<div class="dashboard-flex">
+		<div class="tiga-kotak">
+			<div class="dashboard-nav">
+				<div class="dashboard-nav-akun" style="display: flex; align-items: center; gap: 30px;">
+					<i class="fa-solid fa-user" style="width: 20px;"></i>
+					<div class="card-description">
+						<h2>Edi Suredi</h2>
+						<br>
+						<p>Sistem Informasi</p>
+						<p>Fakultas Ilmu Komputer</p>
+					</div>
+				</div>
 			</div>
-			<br>
-			<div class="dashboard-nav-list">
-				<div class="dashboard-nav-list-judul">
+				
+			<div class="dashboard-nav">
+				<a class="dashboard-home" href=""></a>
+				<div class="dashboard-nav-list">
+					<div class="dashboard-nav-list-judul">
 					<?xml version="1.0" ?><svg id="Layer_1" style="enable-background:new 0 0 80 80;" version="1.1" viewBox="0 0 80 80" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><g id="Layer_2"><g id="Layer_3"><polygon points="61.8,71.8 8.4,71.8 8.4,18.4 35.1,18.4 35.1,15.4 5.4,15.4 5.4,74.8 64.8,74.8 64.8,41.5 61.8,41.5   "/><path d="M22.6,46.2l-2.1,13.1l13.1-2.1l1.3-1.4l0,0l39.8-39.7L63.7,5.2L24,44.9L22.6,46.2z M25.3,48.3l6.1,6.2L24,55.7L25.3,48.3z     M70.4,16.1l-3.9,4l-6.6-6.7l4-3.9L70.4,16.1z M57.7,15.5l6.7,6.7L33.8,52.7L27.2,46L57.7,15.5z"/></g></g></svg>
 					<h3>Pendaftaran	</h3>
 				</div>
@@ -45,54 +51,65 @@
 					<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="logout"><line class="cls-1" x1="15.92" x2="28.92" y1="16" y2="16"/><path d="M23.93,25v3h-16V4h16V7h2V3a1,1,0,0,0-1-1h-18a1,1,0,0,0-1,1V29a1,1,0,0,0,1,1h18a1,1,0,0,0,1-1V25Z"/><line class="cls-1" x1="28.92" x2="24.92" y1="16" y2="20"/><line class="cls-1" x1="28.92" x2="24.92" y1="16" y2="12"/><line class="cls-1" x1="24.92" x2="24.92" y1="8.09" y2="6.09"/><line class="cls-1" x1="24.92" x2="24.92" y1="26" y2="24"/></g></svg>
 					<h3>Logout</h3>
 				</div>
-				<hr>
+			</div>
+			</div>
+			
+			<div class="dashboard-nav">
+				<div class="dashboard-nav-akun">
+					<i class="fa-solid fa-user" ></i>
+					<h2>Edi Suredi</h2>
+					<br>
+					<p>Sistem Informasi</p>
+					<p>Fakultas Ilmu Komputer</p>
+				</div>
 			</div>
 		</div>
-
+	
 		<div class="dashboard-body">
 			<div class="dashboard-content">
 				<div class="dashboard-content-card">
-                    <h1>{{ judul }}</h1>
-                    {% if category == "home" %}
-                    {% else %}
-                    <h2>Permintaan Anda</h2>
-                    <div class="category-selector category-selector-dashboard">
-                        <ul>
-                            <li><a href="" {% if 'semua' in request.get_full_path %}id="sort-focus"{% endif %}>Semua</a></li>
-                        {% for key, val in tahapan.items %}
-                            <li><a href="" {% if key|stringformat:"i" in request.get_full_path %}id="sort-focus"{% endif %}>{{ val }}</a></li>
-                        {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="dashboard-background">
-                        {% for data in datas %}
-                            <a onclick="openInNewTab('{{ hostname }}{{ category }}/detail/{{ data.idPermintaan }}');" class="request">
-                                <div class="request-div">
-                                    <div class="request-div-header">
-                                        <h2>{{ data.judul }}</h2>
-                                        <div class="request-time-post-desktop">
-                                            {{ data.waktu_pengajuan }}<br>
-                                        </div>
-                                    </div>
-                                    <div class="request-div-body">
-                                        <div>
-                                            <p class="request-div-body-status">Status: <strong>{{ data.nama_tahapan }}</strong></p>
-                                            <p>Dipesan Oleh:</p>
-                                            <p><strong>{{ data.nama_birdep }}</strong></p>
-                                        </div>
-                                        <div class="request-time-post-mobile">
-                                            {{ data.waktu_pengajuan }}<br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                </div>
+					<h1>{{ judul }}</h1>
+					{% if category == "home" %}
+					{% else %}
+					<h2>Permintaan Anda</h2>
+					<div class="category-selector category-selector-dashboard">
+						<ul>
+							<li><a href="" {% if 'semua' in request.get_full_path %}id="sort-focus"{% endif %}>Semua</a></li>
+						{% for key, val in tahapan.items %}
+							<li><a href="" {% if key|stringformat:"i" in request.get_full_path %}id="sort-focus"{% endif %}>{{ val }}</a></li>
+						{% endfor %}
+						</ul>
+					</div>
+					<div class="dashboard-background">
+						{% for data in datas %}
+							<a onclick="openInNewTab('{{ hostname }}{{ category }}/detail/{{ data.idPermintaan }}');" class="request">
+								<div class="request-div">
+									<div class="request-div-header">
+										<h2>{{ data.judul }}</h2>
+										<div class="request-time-post-desktop">
+											{{ data.waktu_pengajuan }}<br>
+										</div>
+									</div>
+									<div class="request-div-body">
+										<div>
+											<p class="request-div-body-status">Status: <strong>{{ data.nama_tahapan }}</strong></p>
+											<p>Dipesan Oleh:</p>
+											<p><strong>{{ data.nama_birdep }}</strong></p>
+										</div>
+										<div class="request-time-post-mobile">
+											{{ data.waktu_pengajuan }}<br>
+										</div>
+									</div>
+								</div>
+							</a>
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 	<script type="text/javascript">
 		function openInNewTab(url) {

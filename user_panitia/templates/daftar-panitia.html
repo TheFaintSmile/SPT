@@ -27,17 +27,21 @@
                     <input type="number" id="jumlah-divisi" name="jumlah-divisi" placeholder="Masukkan jumlah divisi yang dibutuhkan..." min="1" value="1"><br/>
 
                     <label for="password">Kata Sandi</label>
-                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi...">
-                    <span>
-                        <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
-                    </span>
+                    <div class = "input-password">
+                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi..." >
+                        <span class="sneak-toggle">
+                            <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
+                        </span>
+                    </div>
                     <br/>
 
                     <label for="retype-password">Ulangi Kata Sandi</label>
-                    <input type="password" id="retype-password" name="retype-password" placeholder="Masukkan ulang kata sandi...">
-                    <span>
-                        <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle2()"></i>
-                    </span>
+                    <div class="input-password">
+                        <input type="password" id="retype-password" name="retype-password" placeholder="Masukkan ulang kata sandi...">
+                        <span class="sneak-toggle">
+                            <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle2()"></i>
+                        </span>
+                    </div>
                     <br/>
                 
                     <p>Sudah punya akun?  <a href="signin" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>

@@ -22,3 +22,13 @@ def get_account_info(token):
 
     x = requests.post(url_signin, json = params)
     return x.json()
+
+def send_email_verification_link(id_token):
+    rest_api_url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key='+API_KEY
+    params = {
+        'requestType': 'VERIFY_EMAIL',
+        'idToken': id_token
+    }
+
+    x = requests.post(rest_api_url, json = params)
+    return x.json()

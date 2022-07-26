@@ -28,7 +28,4 @@ def postSignUp(request):
 def signIn(request):
 	return redirect('/user/login')
 
-def logout(request):
-	auth.logout(request)
-	return redirect("user_panitia:signin")
 

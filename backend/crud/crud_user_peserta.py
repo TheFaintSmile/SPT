@@ -14,8 +14,9 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
     idPeserta = idPeserta+"-"+email
     try:
         user = auth.create_user(
-            uid=idPeserta, email=email, email_verified=False, password=password)
+            uid=idPeserta, email=email, email_verified=False, password=password, display_name=nama)
         print('Sucessfully created new user: {0}'.format(user.uid))
+        # print(user['idToken'])
     except auth.EmailAlreadyExistsError:
         message = 'The user with the provided email already exists'
         return message;

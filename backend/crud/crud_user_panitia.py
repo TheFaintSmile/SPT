@@ -14,7 +14,7 @@ def user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divis
     idPanitia = idPanitia+"-"+email
     try:
         user = auth.create_user(
-            uid=idPanitia, email=email, email_verified=False, password=password)
+            uid=idPanitia, email=email, email_verified=False, password=password, display_name=nama)
         print('Sucessfully created new user: {0}'.format(user.uid))
     except auth.EmailAlreadyExistsError:
         message = 'The user with the provided email already exists'

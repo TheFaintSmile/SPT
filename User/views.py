@@ -21,8 +21,23 @@ def postSignIn(request):
 	request.session['uid'] = str(session_id)
 	request.session['nama'] = str(user['localId'].split(' ')[0])
 	print(request.session['nama'])
+	cek_email = fauth.get_account_info(request.session['uid'])['users'][0]['emailVerified']
+	print(cek_email)
+	if (cek_email == False):
+		return redirect("/user/email-verify")
 	return redirect('/')
 
 def logout(request):
 	auth.logout(request)
 	return redirect("/user/login")
+
+def post_email_verify(request):
+	try :
+		fauth.send_email_verification_link(request.session['uid'])
+	except :
+		print("gagal")
+		return redirect("/user/email-verify")
+	return redirect("/")
+
+def email_verify(request):
+	return render(request, 'email_verify.html')

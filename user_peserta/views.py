@@ -28,7 +28,7 @@ def postSignUp(request):
 			for i in photos[0]["successful"] :
 				pas_foto.append(i["meta"]["id_firebase"])
 			message = user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto)
-			print(message)
+			
 			# Sign Up User
 			if message == "" :
 				return redirect("user_peserta:signin")

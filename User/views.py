@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from backend.misc import firebase_init
+from backend.misc import firebase_init, cekEmailVerified
 
 fauth = firebase_init
 # Create your views here.
@@ -15,15 +15,12 @@ def postSignIn(request):
 		user = fauth.sign_in_with_email_and_password(email, password)
 	except:
 		return redirect(login)
-	print(user)
-	print("berhasil login")
+	
 	session_id = user['idToken']
 	request.session['uid'] = str(session_id)
 	request.session['nama'] = str(user['localId'].split(' ')[0])
-	print(request.session['nama'])
-	cek_email = fauth.get_account_info(request.session['uid'])['users'][0]['emailVerified']
-	print(cek_email)
-	if (cek_email == False):
+	
+	if(cekEmailVerified.cekEmailVerified(request) == False):
 		return redirect("/user/email-verify")
 	return redirect('/')
 

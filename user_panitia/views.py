@@ -19,7 +19,7 @@ def postSignUp(request):
 	
 	if (password == password2):
 		message = user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divisi)
-		print("test daftar panitia")
+	
 	if message == "":
 		return redirect("user_panitia:signin")
 	else:

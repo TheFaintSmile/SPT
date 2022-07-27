@@ -26,5 +26,6 @@ urlpatterns = [
     path('user_panitia/', include(('user_panitia.urls', 'user_panitia'), namespace='user_panitia')),
     path('dashboard_panitia/', include(('dashboard_panitia.urls', 'dashboard_panitia'), namespace='dashboard_panitia')),
     path('backend/', include('backend.urls')),
+    path('dashboard_peserta/', include(('dashboard_pendaftar.urls', 'dashboard_pendaftar'), namespace='dashboard_peserta')),
     
 ]

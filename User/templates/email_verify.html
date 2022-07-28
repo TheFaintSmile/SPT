@@ -10,16 +10,12 @@
 {% block content %}
     <div class="content-root">
         <div class="form-root">
-            <h1 id="judul-form">Email Kamu Belum Terverifikasi :(</h1>
-            <section>
+            <h1 id="judul-form" style="text-align: center;">Email Kamu Belum Terverifikasi :(</h1>
                 <form action="post-email-verify" method="post" id="form">
                     {% csrf_token %}
                     <button type="submit" class="button" value="SignIn" id="submitbutton">Verifikasi Email Kamu</button>
                 </form>
-
-                <div class="filler"></div>
-
         </div>
-        <object class="object only-desktop" data="{% static 'User/svg/Confirmed-rafiki.svg' %}" type="image/svg+xml" style="padding-top: 50px; padding-bottom: 10px;"></object>
+        <object class="object only-desktop" data="{% static 'User/svg/Confirmed-rafiki.svg' %}" type="image/svg+xml" style="padding-top: 2px; padding-bottom: 0px; width: 100%;"></object>
     </div>
 {% endblock content %}

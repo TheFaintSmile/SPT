@@ -40,7 +40,7 @@
 						<hr>
 						<div class="subclass-dashboard-nav-list-item" style="display: flex; align-items: center; gap: 0px">
 							<?xml version="1.0" ?><svg height="35px" viewBox="0 0 48 48" width="30px" xmlns="http://www.w3.org/2000/svg"><path d="M12 4c-2.21 0-3.98 1.79-3.98 4l-.02 32c0 2.21 1.77 4 3.98 4h24.02c2.21 0 4-1.79 4-4v-24l-12-12h-16zm14 14v-11l11 11h-11z"/><path d="M0 0h48v48h-48z" fill="none"/></svg>
-							<a href=" " class="nav-button"><p {% if 'reimbursement' in request.get_full_path %}id="category-focus"{% endif %}>Tersimpan</p></a>
+							<a href=" " class="nav-button"><p {% if 'reimbursement' in request.get_full_path %}id="category-focus"{% endif %}>Update Data Diri</p></a>
 						</div>
 						<hr>
 						<div class="subclass-dashboard-nav-list-item" style="display: flex; align-items: center; gap: 0px">
@@ -75,10 +75,16 @@
 					<h1>{{ judul }}</h1>
 					{% if category == "home" %}
 					{% else %}
-					<h2>Permintaan Anda</h2>
+					<h2>Pendaftaran</h2>
 					<div class="category-selector category-selector-dashboard">
 						<ul>
 							<li><a href="" {% if 'semua' in request.get_full_path %}id="sort-focus"{% endif %}>Semua</a></li>
+						{% for key, val in tahapan.items %}
+							<li><a href="" {% if key|stringformat:"i" in request.get_full_path %}id="sort-focus"{% endif %}>{{ val }}</a></li>
+						{% endfor %}
+						</ul>
+						<ul>
+							<li><a href="" {% if 'semua' in request.get_full_path %}id="sort-focus"{% endif %}>Tersimpan</a></li>
 						{% for key, val in tahapan.items %}
 							<li><a href="" {% if key|stringformat:"i" in request.get_full_path %}id="sort-focus"{% endif %}>{{ val }}</a></li>
 						{% endfor %}

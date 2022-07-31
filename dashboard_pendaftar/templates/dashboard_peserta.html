@@ -79,11 +79,6 @@
 					<div class="category-selector category-selector-dashboard">
 						<ul>
 							<li><a href="" {% if 'semua' in request.get_full_path %}id="sort-focus"{% endif %}>Semua</a></li>
-						{% for key, val in tahapan.items %}
-							<li><a href="" {% if key|stringformat:"i" in request.get_full_path %}id="sort-focus"{% endif %}>{{ val }}</a></li>
-						{% endfor %}
-						</ul>
-						<ul>
 							<li><a href="" {% if 'semua' in request.get_full_path %}id="sort-focus"{% endif %}>Tersimpan</a></li>
 						{% for key, val in tahapan.items %}
 							<li><a href="" {% if key|stringformat:"i" in request.get_full_path %}id="sort-focus"{% endif %}>{{ val }}</a></li>

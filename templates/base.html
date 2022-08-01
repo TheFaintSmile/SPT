@@ -26,7 +26,11 @@
                 <li><a href="/#jump-daftar">Daftar</a></li>
                 <li><a href="">Perekrutan Terbuka</a></li>
                 {% if request.session.uid %}
-                    <li><a href="">Dashboard</a></li>
+                    {% if request.session.isPanitia %}
+                        <li><a href="/dashboard_panitia">Dashboard</a></li>
+                    {% else %}
+                        <li><a href="/dashboard_peserta">Dashboard</a></li>
+                    {% endif %}
                     <li>
                         <a href="" class="logo" style="color:#49B5CD;"><i class="material-symbols-outlined" style="font-size:30px;color:#49B5CD;text-shadow:0.1px 0.1px 0.1px #000000; margin-right: 5px;">account_circle</i>{{request.session.nama}}</a>
                     </li>

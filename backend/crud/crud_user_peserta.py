@@ -32,7 +32,8 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
         'fakultas' : fakultas,
         'jurusan' : jurusan,
         'npm' : npm,
-        'pas_foto' : pas_foto
+        'pas_foto' : pas_foto,
+        'isPanitia' : False
     }
     db.collection('user_peserta').document(idPeserta).set(data)
     return "";

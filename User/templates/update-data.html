@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Update Data Peserta</title>
+    <link rel="stylesheet" href="{% static 'User/css/update-data.css' %}"/>
+    <link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock meta %}
+
+{% block content %}
+    <div class="content-root">
+        <div class="form-root">
+            <h1 id="judul-form">Update Data Peserta</h1>
+            <section>
+                <form action="postsignup" method="post" id="form">
+                    {% csrf_token %}
+                    <label for="nama-lengkap">Nama Lengkap</label>
+                    <input type="text" id="nama-lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap Anda..."> <br/>
+
+                    <label for="Fakultas" >Fakultas</label>
+                    <select id="fakultas" name="fakultas" onchange="showJurusan(this)">
+                        <option value="none">--Pilih Fakultas--</option>
+                        <option value="fk">Fakultas Kedokteran</option>
+                        <option value="fkg">Fakultas Kedokteran Gigi</option>
+                        <option value="fkm">Fakultas Kesehatan Masyarakat</option>
+                        <option value="ff">Fakultas Farmasi</option>
+                        <option value="fik">Fakultas Ilmu Keperawatan</option>
+                        <option value="fmipa">Fakultas Matematika dan Ilmu Pengetahuan Alam</option>
+                        <option value="fasilkom">Fakultas Ilmu Komputer</option>
+                        <option value="ft">Fakultas Teknik</option>
+                        <option value="fh">Fakultas Hukum</option>
+                        <option value="fpsiko">Fakultas Psikologi</option>
+                        <option value="fisip">Fakultas Ilmu Sosial Ilmu Politik</option>
+                        <option value="fib">Fakultas Ilmu Pengetahuan Budaya</option>
+                        <option value="feb">Fakultas Ekonomi Bisnis</option>
+                        <option value="fia">Fakultas Ilmu Administrasi</option>
+                        <option value="vokasi">Vokasi</option>
+                    </select><br/>
+
+                    <label for="jurusan" id="label-jurusan" style="display: none;" >Jurusan</label>
+                    <div id="jurusan" style="display: none;">
+                        <select id="jurusan-fk" name="jurusan">
+                            <option value=100>Ilmu Kedokteran</option>
+                        </select>
+                        <select id="jurusan-fkg" name="jurusan">
+                            <option value=200>Kedokteran Gigi</option>
+                        </select>
+                        <select id="jurusan-fkm" name="jurusan">
+                            <option value=300>Gizi</option>
+                            <option value=301>Kesehatan Lingkungan</option>
+                            <option value=302>Keselamatan dan Kesehatan Kerja</option>
+                            <option value=303>Kesehatan Masyarakat</option>
+                        </select>
+                        <select id="jurusan-ff" name="jurusan">
+                            <option value=400>Ilmu Farmasi</option>
+                        </select>
+                        <select id="jurusan-fik" name="jurusan">
+                            <option value=500>Ilmu Keperawatan</option>
+                        </select>
+                        <select id="jurusan-fmipa" name="jurusan">
+                            <option value=600>Matematika</option>
+                            <option value=601>Kimia</option>
+                            <option value=602>Fisika</option>
+                            <option value=603>Biologi</option>
+                            <option value=604>Geografi</option>
+                            <option value=605>Geofisika</option>
+                            <option value=606>Geologi</option>
+                            <option value=607>Statistika</option>
+                            <option value=608>Aktuaria</option>
+                        </select>
+                        <select id="jurusan-fasilkom" name="jurusan">
+                            <option value=700>Ilmu Komputer</option>
+                            <option value=701>Sistem Informasi</option>
+                        </select>
+                        <select id="jurusan-ft" name="jurusan">
+                            <option value=800>Teknik Sipil</option>
+                            <option value=801>Teknik Lingkungan</option>
+                            <option value=802>Teknik Mesin</option>
+                            <option value=803>Teknik Perkapalan</option>
+                            <option value=804>Teknik Elektro</option>
+                            <option value=805>Teknik Komputer</option>
+                            <option value=806>Teknik Kimia</option>
+                            <option value=807>Teknik Bioproses</option>
+                            <option value=808>Teknik Industri</option>
+                            <option value=809>Teknik Biomedik</option>
+                            <option value=810>Arsitektur</option>
+                            <option value=811>Teknik Metalurgi dan Material</option>
+                            <option value=812>Arsitektur Interior</option>
+                        </select>
+                        <select id="jurusan-fh" name="jurusan">
+                            <option value=900>Ilmu Hukum</option>
+                        </select>
+                        <select id="jurusan-fpsiko" name="jurusan">
+                            <option value=1000>Ilmu Psikologi</option>
+                        </select>
+                        <select id="jurusan-fisip" name="jurusan">
+                            <option value=1100>Ilmu Komunikasi</option>
+                            <option value=1101>Ilmu Politik</option>
+                            <option value=1102>Kriminologi</option>
+                            <option value=1103>Sosiologi</option>
+                            <option value=1104>Ilmu Kesejahteraan Sosial</option>
+                            <option value=1105>Antropologi Sosial</option>
+                            <option value=1106>Hubungan Internasional</option>
+                        </select>
+                        <select id="jurusan-fib" name="jurusan">
+                            <option value=1200>Arkeologi</option>
+                            <option value=1201>Sejarah</option>
+                            <option value=1202>Ilmu Filsafat</option>
+                            <option value=1203>Ilmu Perpustakaan</option>
+                            <option value=1204>Bahasa dan Kebudayaan Korea</option>
+                            <option value=1205>Sastra Belanda</option>
+                            <option value=1206>Sastra Cina</option>
+                            <option value=1207>Sastra Indonesia</option>
+                            <option value=1208>Sastra Jawa/Daerah</option>
+                            <option value=1209>Sastra Jepang</option>
+                            <option value=1210>Sastra Jerman</option>
+                            <option value=1211>Sastra Inggris</option>
+                            <option value=1212>Sastra Prancis</option>
+                            <option value=1213>Sastra Rusia</option>
+                            <option value=1214>Sastra Arab</option>
+                        </select>
+                        <select id="jurusan-feb" name="jurusan">
+                            <option value=1300>Ilmu Ekonomi</option>
+                            <option value=1301>Manajemen</option>
+                            <option value=1302>Akuntansi</option>
+                            <option value=1303>Ilmu Ekonomi Islam</option>
+                            <option value=1304>Bisnis Islam</option>
+                        </select>
+                        <select id="jurusan-fia" name="jurusan">
+                            <option value=1400>Ilmu Administrasi Negara</option>
+                            <option value=1401>Ilmu Administrasi Niaga</option>
+                            <option value=1402>Ilmu Administrasi Fiskal</option>
+                        </select>
+                        <select id="jurusan-vokasi" name="jurusan">
+                            <option value=1500>Administrasi Asuransi dan Aktuaria</option>
+                            <option value=1501>Administrasi Keuangan dan Perbankan</option>
+                            <option value=1502>Administrasi Perkantoran dan Sekretari</option>
+                            <option value=1503>Administrasi Perpajakan</option>
+                            <option value=1504>Fisioterapi</option>
+                            <option value=1505>Hubungan Masyarakat</option>
+                            <option value=1506>Manajemen Informasi dan Dokumentasi</option>
+                            <option value=1507>Vokasional Pariwisata</option>
+                            <option value=1508>Okupasi Terapi</option>
+                            <option value=1509>Penyiaran Multimedia</option>
+                            <option value=1510>Periklanan Kreatif</option>
+                            <option value=1511>Akuntansi</option>
+                            <option value=1512>Administrasi Perumahsakitan</option>
+                            <option value=1513>Produksi Media</option>
+                            <option value=1514>Bisnis Kreatif</option>
+                        </select>
+                    </div>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan alamat email Anda..."><br/>
+
+                    <label for="npm">NPM</label>
+                    <!-- <input type="text" pattern="\d*" id="npm" name="npm" placeholder="Masukkan NPM Anda..." maxlength="10"> -->
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" id="npm" name="npm" placeholder="Masukkan NPM Anda..." maxlength="10" />
+                    <br/>
+
+                    <label class="control-label">Unggah Pas Foto</label>
+                    <div class="uppy" id="drag-drop-area"></div>
+
+                    <div class="filler"></div>
+
+                    <input name="uploadFiles" type="hidden">
+
+                </form>
+               
+                <button type="button" class="button" id="submitbutton">U B A H</button>
+
+                <div class="filler"></div>
+                <!-- Script upload ke Foto Peserta-->
+                <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+                <script>
+                    var uppy = new Uppy.Core()
+
+                    uppy.on('file-added', (file) => {
+                        uppy.setFileMeta(file.id, {
+                            id_firebase: "USER_PESERTA/PAS_FOTO/" + uuidv4(),
+                        })
+                    })
+                    uppy.use(Uppy.XHRUpload, {
+                        endpoint: '{% url "upload_photo" %}',
+                        headers: {'X-CSRFToken':"{{csrf_token}}"},
+                        formData: true,
+                        fieldName: 'file'
+                    })
+                    uppy.use(Uppy.Dashboard, {
+                        inline: true,
+                        target: '#drag-drop-area',
+                        proudlyDisplayPoweredByUppy:false,
+                        showProgressDetails:true,
+                        doneButtonHandler: null,
+                        hideUploadButton: true,
+                    })
+                    uppy.on('complete', (result) => {
+                        console.log('Upload complete! We’ve uploaded these files:', result.successful)
+                    })
+                    uppy.use(Uppy.Form, {
+                        target: "#form",
+                        resultName: 'uploadFiles',
+                        getMetaFromForm: false,
+                        addResultToForm: true,
+                        submitOnSuccess: true,
+                        triggerUploadOnSubmit: false,
+                    })
+                </script>
+                <script type="application/javascript" src="{% static 'user_peserta/js/dropdown-jurusan.js' %}"></script>
+                <script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
+                <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+                <script>
+                    $('select option:first-child').attr("selected", "selected");
+                </script>
+            </section>
+         
+        </div>
+    <object class="object only-desktop" data="{% static 'User/svg/Mobile development-pana.svg' %}" type="image/svg+xml"></object>
+    </div>
+{% endblock content %}

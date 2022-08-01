@@ -44,3 +44,6 @@ def email_verify(request):
 
 def change_password(request):
 	return render(request, 'change-password.html')
+
+def update_data(request):
+	return render(request, 'update-data.html')

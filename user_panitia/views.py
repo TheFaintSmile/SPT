@@ -28,4 +28,5 @@ def postSignUp(request):
 def signIn(request):
 	return redirect('/user/login')
 
-
+def update_panitia(request):
+	return render(request, 'update-panitia.html')

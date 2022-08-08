@@ -61,7 +61,17 @@ def user_panitia_update_password(idPanitia, password):
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi):
+def user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi, idLama):
+    idPanitia = idPanitia+"-"+email
+    check_email = user_panitia_read(idPanitia)["email"]
+    try:
+        user = auth.update_user(idLama, uid=idPanitia, email=email, display_name=nama)
+        # jika email berubah, maka set email_verified ke False
+        if check_email != email:
+            user = auth.update_user(idPanitia, email_verified=False)    # verifikasi email lagi
+        print('Sucessfully update user: {0}'.format(user.uid))
+    except :
+        return "there is error"
     data = {
         'id': idPanitia,
         'nama': nama,
@@ -71,7 +81,7 @@ def user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi):
         'isPanitia' : True
     }
     db.collection('user_panitia').document(idPanitia).set(data)
-    return data
+    return ""
 
 def user_panitia_delete(idPanitia):
     auth.delete_user(idPanitia)

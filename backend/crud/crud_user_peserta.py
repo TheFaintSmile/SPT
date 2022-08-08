@@ -57,7 +57,17 @@ def user_peserta_update_password(idPeserta, password):
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas_foto):
+def user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas_foto, idLama):
+    idPeserta = idPeserta+"-"+email
+    check_email = user_peserta_read(idPeserta)["email"]
+    try:
+        user = auth.update_user(idLama, uid=idPeserta, email=email, display_name=nama)
+        # jika email berubah, maka set email_verified ke False
+        if check_email != email:
+            user = auth.update_user(idPeserta, email_verified=False)    # verifikasi email lagi
+        print('Sucessfully update user: {0}'.format(user.uid))
+    except :
+        return "there is error"
     data = {
         'id': idPeserta,
         'email': email,
@@ -68,7 +78,7 @@ def user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas
         'pas_foto' : pas_foto
     }
     db.collection('user_peserta').document(idPeserta).set(data)
-    return data
+    return ""
 
 def user_peserta_delete(idPeserta):
     auth.delete_user(idPeserta)

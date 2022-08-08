@@ -61,6 +61,3 @@ def post_change_password(request):
 		return redirect('/')
 	
 	return render(request, 'change-password.html')
-
-def update_data(request):
-	return render(request, 'update-data.html')

@@ -5,4 +5,6 @@ urlpatterns = [
     path('signup', views.signUp, name='signup'),
     path('postsignup', views.postSignUp, name='postsignup'),
     path('signin', views.signIn, name='signin'),
+    path('update-panitia', views.update_panitia, name='update-panitia'),
+
 ]

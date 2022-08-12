@@ -17,14 +17,15 @@ def postSignIn(request):
 	except:
 		return redirect(login)
 	
-	session_id = user['idToken']
-
-	request.session['user_id'] = str(user['localId'])					# user_id is the same as id in firebase collection
-	request.session['uid'] = str(session_id)
-	request.session['nama'] = str(user['localId'].split(' ')[0])
+	request.session['uid'] = str(user['idToken'])
+	# print("ini session id/token: " + request.session['uid'] + "\n")
+	request.session['user_id'] = str(user['localId'])					# user_id is the same as uid auth
+	# print("ini user id/uid: " + request.session['user_id'] + "\n")
+	request.session['nama'] = str(user['displayName'].split(' ')[0])
 	request.session['isPanitia'] = getUserRole.getUserRole(request)
+	request.session['email'] = str(user['email'])
 	
-	print(request.session['isPanitia'])
+	# print(request.session['isPanitia'])
 	
 	if(cekEmailVerified.cekEmailVerified(request) == False):
 		return redirect("/user/email-verify")

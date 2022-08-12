@@ -11,7 +11,7 @@ def signUp(request):
 	return render(request, 'daftar-peserta.html')
 
 def postSignUp(request):
-	idPeserta = request.POST.get("nama_lengkap")
+	# idPeserta = request.POST.get("nama_lengkap")
 	nama = request.POST.get("nama_lengkap")
 	fakultas = request.POST.get("fakultas")
 	jurusan = request.POST.get("jurusan")
@@ -28,7 +28,7 @@ def postSignUp(request):
 			pas_foto = []
 			for i in photos[0]["successful"] :
 				pas_foto.append(i["meta"]["id_firebase"])
-			message = user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto)
+			message = user_peserta_create(email, password, nama, fakultas, jurusan, npm, pas_foto)
 			
 			# Sign Up User
 			if message == "" :
@@ -40,10 +40,10 @@ def signIn(request):
 	return redirect('/user/login')
 
 def update_data_peserta(request):
-	return render(request, 'update-data.html')
+	return render(request, 'update-peserta.html')
 
 def post_update_data_peserta(request):
-	idPeserta = request.POST.get("nama_lengkap")
+	# idPeserta = request.POST.get("nama_lengkap")
 	nama = request.POST.get("nama_lengkap")
 	fakultas = request.POST.get("fakultas")
 	jurusan = request.POST.get("jurusan")
@@ -51,18 +51,21 @@ def post_update_data_peserta(request):
 	npm = request.POST.get("npm")
 	photos = request.POST.get("uploadFiles")
 	photos = json.loads(photos)
-	id_lama = request.session['user_id']
-	del_photo = user_peserta_read(idPeserta)["pas_foto"]
+	local_id = request.session['user_id']
+	email_lama = request.session['email']
+	# del_photo = user_peserta_read(id_lama)["pas_foto"]
 
 	# Update data to firebase
 	if photos[0]["successful"] :
+		# for photo in del_photo :
+		# 	delFiles.delPhoto(photo)
+		
 		pas_foto = []
 		for i in photos[0]["successful"] :
 			pas_foto.append(i["meta"]["id_firebase"])
-		message = user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas_foto, id_lama)
-		
-		for photo in del_photo :
-			delFiles.delPhoto(photo)
+		message = user_peserta_update_data(email, nama, fakultas, jurusan, npm, pas_foto, local_id, email_lama)
+
+		print(message)
 		
 		if message == "" :
 			return redirect("/")

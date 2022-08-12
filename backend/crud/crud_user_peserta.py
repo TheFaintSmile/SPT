@@ -10,11 +10,10 @@ if not firebase_admin._apps:
 db = firestore.client()
 ds = storage.bucket()
 
-def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm, pas_foto) :
-    idPeserta = idPeserta+"-"+email
+def user_peserta_create(email, password, nama, fakultas, jurusan, npm, pas_foto) :
     try:
         user = auth.create_user(
-            uid=idPeserta, email=email, email_verified=False, password=password, display_name=nama)
+            email=email, email_verified=False, password=password, display_name=nama)
         print('Sucessfully created new user: {0}'.format(user.uid))
         # print(user['idToken'])
     except auth.EmailAlreadyExistsError:
@@ -26,7 +25,6 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
     except :
         return "there is error"
     data = {
-        'id': idPeserta,
         'email': email,
         'nama': nama,
         'fakultas' : fakultas,
@@ -35,11 +33,11 @@ def user_peserta_create(idPeserta, email, password, nama, fakultas, jurusan, npm
         'pas_foto' : pas_foto,
         'isPanitia' : False
     }
-    db.collection('user_peserta').document(idPeserta).set(data)
+    db.collection('user_peserta').document(email).set(data)
     return "";
 
-def user_peserta_read(idPeserta):
-    data = db.collection('user_peserta').document(idPeserta).get().to_dict()
+def user_peserta_read(emailPeserta):
+    data = db.collection('user_peserta').document(emailPeserta).get().to_dict()
     print(data)
     return data
 
@@ -57,27 +55,29 @@ def user_peserta_update_password(idPeserta, password):
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_peserta_update_data(idPeserta, email, nama, fakultas, jurusan, npm, pas_foto, idLama):
-    idPeserta = idPeserta+"-"+email
-    check_email = user_peserta_read(idPeserta)["email"]
+def user_peserta_update_data(email, nama, fakultas, jurusan, npm, pas_foto, localId, email_lama):
+    check_email = user_peserta_read(email_lama)["email"]
     try:
-        user = auth.update_user(idLama, uid=idPeserta, email=email, display_name=nama)
+        user = auth.update_user(localId, email=email, display_name=nama)
+
         # jika email berubah, maka set email_verified ke False
         if check_email != email:
-            user = auth.update_user(idPeserta, email_verified=False)    # verifikasi email lagi
+            user = auth.update_user(localId, email_verified=False)    # verifikasi email lagi
+        
         print('Sucessfully update user: {0}'.format(user.uid))
     except :
         return "there is error"
+    
     data = {
-        'id': idPeserta,
         'email': email,
         'nama': nama,
         'fakultas' : fakultas,
         'jurusan' : jurusan,
         'npm' : npm,
-        'pas_foto' : pas_foto
+        'pas_foto' : pas_foto,
+        'isPanitia' : False
     }
-    db.collection('user_peserta').document(idPeserta).set(data)
+    db.collection('user_peserta').document(email).set(data)
     return ""
 
 def user_peserta_delete(idPeserta):

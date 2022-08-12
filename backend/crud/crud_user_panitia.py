@@ -14,7 +14,7 @@ def user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divis
     idPanitia = idPanitia+"-"+email
     try:
         user = auth.create_user(
-            uid=idPanitia, email=email, email_verified=False, password=password, display_name=nama)
+            email=email, email_verified=False, password=password, display_name=nama)
         print('Sucessfully created new user: {0}'.format(user.uid))
     except auth.EmailAlreadyExistsError:
         message = 'The user with the provided email already exists'
@@ -25,7 +25,7 @@ def user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divis
     
     # save to collection user_panitia
     data = {
-        'id': idPanitia,
+        'second_id': idPanitia,
         'nama': nama,
         'email': email,
         'kategori' : kategori,
@@ -63,24 +63,27 @@ def user_panitia_update_password(idPanitia, password):
 
 def user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi, idLama):
     idPanitia = idPanitia+"-"+email
-    check_email = user_panitia_read(idPanitia)["email"]
+    check_email = user_panitia_read(idLama)["email"]
     try:
-        user = auth.update_user(idLama, uid=idPanitia, email=email, display_name=nama)
+        user = auth.update_user(idLama, email=email, display_name=nama)
+
         # jika email berubah, maka set email_verified ke False
         if check_email != email:
-            user = auth.update_user(idPanitia, email_verified=False)    # verifikasi email lagi
+            user = auth.update_user(idLama, email_verified=False)    # verifikasi email lagi
+
         print('Sucessfully update user: {0}'.format(user.uid))
     except :
         return "there is error"
+    
     data = {
-        'id': idPanitia,
+        'second_id': idPanitia,
         'nama': nama,
         'email': email,
         'kategori' : kategori,
         'jumlah_divisi' : jumlah_divisi,
         'isPanitia' : True
     }
-    db.collection('user_panitia').document(idPanitia).set(data)
+    db.collection('user_panitia').document(idLama).set(data)
     return ""
 
 def user_panitia_delete(idPanitia):

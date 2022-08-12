@@ -4,5 +4,5 @@ from backend.crud import crud_user_peserta
 
 def getUserRole(request):
     user = firebase_init.get_account_info(request.session['uid'])['users'][0]
-    user_role = crud_user_peserta.user_peserta_read(user['localId'])['isPanitia']
-    return user_role
+    user_role = crud_user_peserta.user_peserta_read(user['email'])['isPanitia']
+    return user_role        # True if user is panitia, False if user is peserta

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from backend.misc import firebase_init, cekEmailVerified, getUserRole
+from backend.misc import firebase_init, cekEmailVerified, getUserRole, getJurusanFakultas
 from backend.crud import crud_user_peserta, crud_user_panitia
 
 fauth = firebase_init
@@ -22,8 +22,13 @@ def postSignIn(request):
 	request.session['user_id'] = str(user['localId'])					# user_id is the same as uid auth
 	# print("ini user id/uid: " + request.session['user_id'] + "\n")
 	request.session['nama'] = str(user['displayName'].split(' ')[0])
+	request.session['nama_lengkap'] = str(user['displayName'])
 	request.session['isPanitia'] = getUserRole.getUserRole(request)
 	request.session['email'] = str(user['email'])
+	
+	if(request.session['isPanitia']==False):
+		request.session['jurusan'] = str(getJurusanFakultas.getJurusan(request))
+		request.session['fakultas'] = str(getJurusanFakultas.getFakultas(request))
 	
 	# print(request.session['isPanitia'])
 	

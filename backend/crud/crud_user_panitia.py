@@ -10,8 +10,7 @@ if not firebase_admin._apps:
 db = firestore.client()
 ds = storage.bucket()
 
-def user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divisi) :
-    idPanitia = idPanitia+"-"+email
+def user_panitia_create(nama, email, password, kategori, jumlah_divisi) :
     try:
         user = auth.create_user(
             email=email, email_verified=False, password=password, display_name=nama)
@@ -25,25 +24,24 @@ def user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divis
     
     # save to collection user_panitia
     data = {
-        'second_id': idPanitia,
         'nama': nama,
         'email': email,
         'kategori' : kategori,
         'jumlah_divisi' : jumlah_divisi,
         'isPanitia' : True
     }
-    db.collection('user_panitia').document(idPanitia).set(data)
+    db.collection('user_panitia').document(email).set(data)
 
     # save to collection user_peserta
     data_peserta = {
-        'id': idPanitia,
+        'email': email,
         'isPanitia' : True
     }
-    db.collection('user_peserta').document(idPanitia).set(data_peserta)
+    db.collection('user_peserta').document(email).set(data_peserta)
     return "";
 
-def user_panitia_read(idPanitia):
-    data = db.collection('user_panitia').document(idPanitia).get()
+def user_panitia_read(emailPanitia):
+    data = db.collection('user_panitia').document(emailPanitia).get().to_dict()
     print('Successfully fetched user data: {0}'.format(data))
     return data
 
@@ -61,29 +59,36 @@ def user_panitia_update_password(idPanitia, password):
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi, idLama):
-    idPanitia = idPanitia+"-"+email
-    check_email = user_panitia_read(idLama)["email"]
+def user_panitia_update_data(nama, email, kategori, jumlah_divisi, local_id, email_lama):
+    # idPanitia = idPanitia+"-"+email
     try:
-        user = auth.update_user(idLama, email=email, display_name=nama)
+        user = auth.update_user(local_id, email=email, display_name=nama)
 
         # jika email berubah, maka set email_verified ke False
-        if check_email != email:
-            user = auth.update_user(idLama, email_verified=False)    # verifikasi email lagi
+        if email_lama != email:
+            user = auth.update_user(local_id, email_verified=False)    # verifikasi email lagi
+            db.collection('user_panitia').document(email_lama).delete()
+            db.collection('user_peserta').document(email_lama).delete()
 
         print('Sucessfully update user: {0}'.format(user.uid))
     except :
         return "there is error"
     
     data = {
-        'second_id': idPanitia,
         'nama': nama,
         'email': email,
         'kategori' : kategori,
         'jumlah_divisi' : jumlah_divisi,
         'isPanitia' : True
     }
-    db.collection('user_panitia').document(idLama).set(data)
+    db.collection('user_panitia').document(email).set(data)
+
+    # save to collection user_peserta
+    data_peserta = {
+        'email': email,
+        'isPanitia' : True
+    }
+    db.collection('user_peserta').document(email).set(data_peserta)
     return ""
 
 def user_panitia_delete(idPanitia):

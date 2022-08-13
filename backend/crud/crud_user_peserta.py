@@ -15,7 +15,7 @@ def user_peserta_create(email, password, nama, fakultas, jurusan, npm, pas_foto)
         user = auth.create_user(
             email=email, email_verified=False, password=password, display_name=nama)
         print('Sucessfully created new user: {0}'.format(user.uid))
-        # print(user['idToken'])
+        
     except auth.EmailAlreadyExistsError:
         message = 'The user with the provided email already exists'
         return message;
@@ -56,13 +56,13 @@ def user_peserta_update_password(idPeserta, password):
     print('Sucessfully updated user: {0}'.format(user.uid))
 
 def user_peserta_update_data(email, nama, fakultas, jurusan, npm, pas_foto, localId, email_lama):
-    check_email = user_peserta_read(email_lama)["email"]
     try:
         user = auth.update_user(localId, email=email, display_name=nama)
 
         # jika email berubah, maka set email_verified ke False
-        if check_email != email:
+        if email_lama != email:
             user = auth.update_user(localId, email_verified=False)    # verifikasi email lagi
+            db.collection('user_peserta').document(email_lama).delete()
         
         print('Sucessfully update user: {0}'.format(user.uid))
     except :

@@ -64,6 +64,11 @@ def post_update_data_peserta(request):
 		for i in photos[0]["successful"] :
 			pas_foto.append(i["meta"]["id_firebase"])
 		message = user_peserta_update_data(email, nama, fakultas, jurusan, npm, pas_foto, local_id, email_lama)
+		request.session['nama'] = str(nama.split(" ")[0])
+		request.session['email'] = str(email)
+		request.session['nama_lengkap'] = str(nama)
+		request.session['fakultas'] = str(fakultas)
+		request.session['jurusan'] = str(jurusan)
 
 		print(message)
 		

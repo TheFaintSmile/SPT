@@ -9,7 +9,7 @@ def signUp(request):
 	return render(request, 'daftar-panitia.html')
 
 def postSignUp(request):
-	idPanitia = request.POST.get("nama-acara")
+	# idPanitia = request.POST.get("nama-acara")
 	nama = request.POST.get("nama-acara")
 	email = request.POST.get("email")
 	password = request.POST.get("password")
@@ -18,7 +18,7 @@ def postSignUp(request):
 	jumlah_divisi = request.POST.get("jumlah-divisi")
 	
 	if (password == password2):
-		message = user_panitia_create(idPanitia, nama, email, password, kategori, jumlah_divisi)
+		message = user_panitia_create(nama, email, password, kategori, jumlah_divisi)
 	
 	if message == "":
 		return redirect("user_panitia:signin")
@@ -32,21 +32,22 @@ def update_data_panitia(request):
 	return render(request, 'update-panitia.html')
 
 def post_update_data_panitia(request) :
-	idPanitia = request.POST.get("nama-acara")
+	# idPanitia = request.POST.get("nama-acara")
 	nama = request.POST.get("nama-acara")
 	email = request.POST.get("email")
 	kategori = request.POST.get("kategori")
 	jumlah_divisi = request.POST.get("jumlah-divisi")
-	id_lama = request.session['user_id']
+	local_id = request.session['user_id']
+	email_lama = request.session['email']
 
 	# Update data to firebase
-	if photos[0]["successful"] :
-		pas_foto = []
-		for i in photos[0]["successful"] :
-			pas_foto.append(i["meta"]["id_firebase"])
-		message = user_panitia_update_data(idPanitia, nama, email, kategori, jumlah_divisi, id_lama)
+	message = user_panitia_update_data(nama, email, kategori, jumlah_divisi, local_id, email_lama)
+	request.session['nama'] = str(nama.split(" ")[0])
+	request.session['email'] = str(email)
+	request.session['nama_lengkap'] = str(nama)
+	
+	if message == "" :
+		return redirect("/")
+	else :
+		return redirect("user_panitia:update-data-panitia")
 		
-		if message == "" :
-			return redirect("/")
-		else :
-			return redirect("user_panitia:update-data-peserta")

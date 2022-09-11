@@ -15,10 +15,10 @@ def postSignUp(request):
 	password = request.POST.get("password")
 	password2 = request.POST.get("retype-password")
 	kategori = request.POST.get("kategori")
-	jumlah_divisi = request.POST.get("jumlah-divisi")
+	# jumlah_divisi = request.POST.get("jumlah-divisi")
 	
 	if (password == password2):
-		message = user_panitia_create(nama, email, password, kategori, jumlah_divisi)
+		message = user_panitia_create(nama, email, password, kategori)
 	
 	if message == "":
 		return redirect("user_panitia:signin")
@@ -36,12 +36,12 @@ def post_update_data_panitia(request) :
 	nama = request.POST.get("nama-acara")
 	email = request.POST.get("email")
 	kategori = request.POST.get("kategori")
-	jumlah_divisi = request.POST.get("jumlah-divisi")
+	# jumlah_divisi = request.POST.get("jumlah-divisi")
 	local_id = request.session['user_id']
 	email_lama = request.session['email']
 
 	# Update data to firebase
-	message = user_panitia_update_data(nama, email, kategori, jumlah_divisi, local_id, email_lama)
+	message = user_panitia_update_data(nama, email, kategori, local_id, email_lama)
 	request.session['nama'] = str(nama.split(" ")[0])
 	request.session['email'] = str(email)
 	request.session['nama_lengkap'] = str(nama)

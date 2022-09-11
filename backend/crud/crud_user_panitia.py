@@ -10,7 +10,7 @@ if not firebase_admin._apps:
 db = firestore.client()
 ds = storage.bucket()
 
-def user_panitia_create(nama, email, password, kategori, jumlah_divisi) :
+def user_panitia_create(nama, email, password, kategori) :
     try:
         user = auth.create_user(
             email=email, email_verified=False, password=password, display_name=nama)
@@ -27,7 +27,6 @@ def user_panitia_create(nama, email, password, kategori, jumlah_divisi) :
         'nama': nama,
         'email': email,
         'kategori' : kategori,
-        'jumlah_divisi' : jumlah_divisi,
         'isPanitia' : True
     }
     db.collection('user_panitia').document(email).set(data)
@@ -59,7 +58,7 @@ def user_panitia_update_password(idPanitia, password):
 
     print('Sucessfully updated user: {0}'.format(user.uid))
 
-def user_panitia_update_data(nama, email, kategori, jumlah_divisi, local_id, email_lama):
+def user_panitia_update_data(nama, email, kategori, local_id, email_lama):
     # idPanitia = idPanitia+"-"+email
     try:
         user = auth.update_user(local_id, email=email, display_name=nama)
@@ -78,7 +77,6 @@ def user_panitia_update_data(nama, email, kategori, jumlah_divisi, local_id, ema
         'nama': nama,
         'email': email,
         'kategori' : kategori,
-        'jumlah_divisi' : jumlah_divisi,
         'isPanitia' : True
     }
     db.collection('user_panitia').document(email).set(data)

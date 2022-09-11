@@ -10,32 +10,35 @@ if not firebase_admin._apps:
 db = firestore.client()
 ds = storage.bucket()
 
-def event_create(nama, email,deskripsi, tugas, tanggal, divisi) :
+def event_create(nama, deskripsi, tugas, tanggal, jumlah_divisi, divisi, logo) :
     
     data = {
         'nama' : nama,
-        'email' : email,
         'deskripsi' : deskripsi,
         'tugas' : tugas,
         'tanggal' : tanggal,
-        'divisi' : divisi
+        'jumlah_divisi' : jumlah_divisi,
+        'divisi' : divisi,
+        'logo' : logo
     }
-    db.collection('events').document(email).set(data)
+    db.collection('events').document(nama).set(data)
 
-def event_read(emailEvent) :
-    data = db.collection('events').document(emailEvent).get().to_dict()
+def event_read(namaEvent) :
+    data = db.collection('events').document(namaEvent).get().to_dict()
     print('Successfully fetched user data: {0}'.format(data))
     return data
 
-def event_update(emailEvent, nama, deskripsi, tugas, tanggal, divisi) :
+def event_update(nama, deskripsi, tugas, tanggal, jumlah_divisi, divisi, logo) :
     data = {
         'nama' : nama,
         'deskripsi' : deskripsi,
         'tugas' : tugas,
         'tanggal' : tanggal,
-        'divisi' : divisi
+        'jumlah_divisi' : jumlah_divisi,
+        'divisi' : divisi,
+        'logo' : logo
     }
-    db.collection('events').document(emailEvent).set(data)
+    db.collection('events').document(nama).set(data)
 
-def event_delete(emailEvent) :
-    db.collection('events').document(emailEvent).delete()
+def event_delete(namaEvent) :
+    db.collection('events').document(namaEvent).delete()

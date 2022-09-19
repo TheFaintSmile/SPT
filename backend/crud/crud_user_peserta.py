@@ -83,3 +83,9 @@ def user_peserta_update_data(email, nama, fakultas, jurusan, npm, pas_foto, loca
 def user_peserta_delete(idPeserta):
     auth.delete_user(idPeserta)
     print('Successfully deleted user')
+
+def user_register_event(email, events) :
+    data = {
+        'events' : events
+    }
+    db.collection('user_peserta').document(email).set(data, merge=True)

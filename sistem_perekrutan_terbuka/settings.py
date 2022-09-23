@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'backend',
     'user_peserta',
     'user_panitia',
+    'event_kepanitiaan'
 ]
 
 MIDDLEWARE = [

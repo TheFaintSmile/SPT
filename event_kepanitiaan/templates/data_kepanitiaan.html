@@ -2,129 +2,192 @@
 {% load static %}
 
 {% block meta %}
-    <title>Data Kepanitiaan</title>
-    <link rel="stylesheet" href="{% static 'event_kepanitiaan/css/style.css' %}"/>
-    <link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet"/>
+<title>Data Kepanitiaan</title>
+<link rel="stylesheet" href="{% static 'event_kepanitiaan/css/style.css' %}" />
+<link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet" />
 {% endblock meta %}
 
 {% block content %}
-    <div class="content-root">
-        <div class="form-root">
-            <h1 id="judul-form">Masukkan Data Kepanitiaan</h1>
-            <section>
-                <form action="postsignup" method="post" id="form">
-                    {% csrf_token %}
-                    <h1>UI Art X</h1>
-                    
-                    <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara"></textarea> <br/>
+<div class="content-root">
+    <div class="form-root">
+        <h1 id="judul-form">Masukkan Data Kepanitiaan</h1>
+        <section>
+            <form action="postsignup" method="post" id="form">
+                {% csrf_token %}
+                <h1>UI Art X</h1>
 
-                    <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" id="jumlah-tugas" name="jumlah-tugas" placeholder="Jumlah tugas yang dibutuhkan" maxlength="2" /> <br/>
-
-                    <label for="mulai-event">Mulai event</label>
-                    <input type="date" id="mulai-event" name="mulai-event">
-
-                    <label for="selesai-event">Selesai event</label>
-                    <input type="date" id="selesai-event" name="selesai-event">
-
-                    <label for="Tingkat" >Tingkat</label>
-                    <select id="tingkat" name="tingkat">
-                        <option value="none">--Pilih Tingkatan--</option>
-                        <option value="Jurusan">Jurusan</option>
-                        <option value="Fakultas">Fakultas</option>
-                        <option value="Universitas">Universitas</option>
-                        <option value="Nasional">Nasional</option>
-                    </select> <br/>
-
-                    <input type="text" id="bidang" name="bidang" placeholder="Bidang"> <br/>
-
-                    <br/>
-
-                    <label for="Timeline" >Timeline</label> <br>
-                    <div class="uppy" id="drag-drop-area"></div>
-
-                    <div class="filler"></div>
-
-                    <input name="uploadFiles" type="hidden">
-                    <p>Sudah punya akun?  <a href="signin" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>
-               
-                    <button type="submit" value="submit" class="button" id="submitbutton">DAFTAR</button>
-
-
+                <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara"></textarea>
+                <br />
                 
-                </form>
+                <label for="tambah-tugas">Tugas Umum</label>
+                <div class="field_wrapper_1">
+                    <div>
+                        <a href="javascript:void(0);" class="add_button_1" title="Add field"><img src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18"/></a>
+                    </div>
+                </div>
+
+                <label for="tambah-tugas">Tugas Khusus</label>
+                <div class="field_wrapper_2">
+                    <div>
+                        <a href="javascript:void(0);" class="add_button_2" title="Add field"><img src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18"/></a>
+                    </div>
+                </div>
+
+
+                <label for="mulai-event">Mulai event</label>
+                <input type="date" id="mulai-event" name="mulai-event">
+
+                <label for="selesai-event">Selesai event</label>
+                <input type="date" id="selesai-event" name="selesai-event">
+
+                <label for="Tingkat">Tingkat</label>
+                <select id="tingkat" name="tingkat">
+                    <option value="none">--Pilih Tingkatan--</option>
+                    <option value="Jurusan">Jurusan</option>
+                    <option value="Fakultas">Fakultas</option>
+                    <option value="Universitas">Universitas</option>
+                    <option value="Nasional">Nasional</option>
+                </select> <br />
+
+                <input type="text" id="bidang" name="bidang" placeholder="Bidang"> <br />
+
+                <br />
+
+                <label for="Timeline">Timeline</label> <br>
+                <div class="uppy" id="drag-drop-area"></div>
 
                 <div class="filler"></div>
 
-            </section>
-        </div>
+                <input name="uploadFiles" type="hidden">
+                <p>Sudah punya akun? <a href="signin" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a>
+                <p>
+
+                    <button type="submit" value="submit" class="button" id="submitbutton">DAFTAR</button>
+
+            </form>
+
+            <div class="filler"></div>
+
+        </section>
     </div>
+</div>
 
-    <!-- Script upload ke Foto Peserta-->
-    <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
-    <script>
-        var uppy = new Uppy.Core()
+<!-- Script upload ke Foto Peserta-->
+<script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+<script>
+    var uppy = new Uppy.Core()
 
-        uppy.on('file-added', (file) => {
-            uppy.setFileMeta(file.id, {
-                id_firebase: "USER_PESERTA/PAS_FOTO/" + uuidv4(),
-            })
+    uppy.on('file-added', (file) => {
+        uppy.setFileMeta(file.id, {
+            id_firebase: "USER_PESERTA/PAS_FOTO/" + uuidv4(),
         })
-        uppy.use(Uppy.XHRUpload, {
-            endpoint: '{% url "upload_photo" %}',
-            headers: {'X-CSRFToken':"{{csrf_token}}"},
-            formData: true,
-            fieldName: 'file'
-        })
-        uppy.use(Uppy.Dashboard, {
-            inline: true,
-            target: '#drag-drop-area',
-            proudlyDisplayPoweredByUppy:false,
-            showProgressDetails:true,
-            doneButtonHandler: null,
-            hideUploadButton: true,
-        })
-        uppy.on('complete', (result) => {
-            console.log('Upload complete! We’ve uploaded these files:', result.successful)
-        })
-        uppy.use(Uppy.Form, {
-            target: "#form",
-            resultName: 'uploadFiles',
-            getMetaFromForm: false,
-            addResultToForm: true,
-            submitOnSuccess: true,
-            triggerUploadOnSubmit: false,
-        })
-    </script>
-    <script type="application/javascript" src="{% static 'user_peserta/js/dropdown-jurusan.js' %}"></script>
-    <script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
-    <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
-    <script>
-        $('select option:first-child').attr("selected", "selected");
-    </script>
-    <script>
-             var state= false;
-                function toggle(){
-                    if(state){
-                        document.getElementById("password").setAttribute("type", "password");
-                        document.getElementById("eye").style.color='#7a797e';
-                        state=false;
-                    }
-                    else{
-                        document.getElementById("password").setAttribute("type", "text");
-                        state=true;
-                    }
-                }
-                var state2 = false;
-                function toggle2(){
-                    if(state2){
-                        document.getElementById("retype-password").setAttribute("type", "password");
-                        document.getElementById("eye").style.color='#7a797e';
-                        state2=false;
-                    }
-                    else{
-                        document.getElementById("retype-password").setAttribute("type", "text");
-                        state2=true;
-                    }
-                }
-    </script>
+    })
+    uppy.use(Uppy.XHRUpload, {
+        endpoint: '{% url "upload_photo" %}',
+        headers: { 'X-CSRFToken': "{{csrf_token}}" },
+        formData: true,
+        fieldName: 'file'
+    })
+    uppy.use(Uppy.Dashboard, {
+        inline: true,
+        target: '#drag-drop-area',
+        proudlyDisplayPoweredByUppy: false,
+        showProgressDetails: true,
+        doneButtonHandler: null,
+        hideUploadButton: true,
+    })
+    uppy.on('complete', (result) => {
+        console.log('Upload complete! We’ve uploaded these files:', result.successful)
+    })
+    uppy.use(Uppy.Form, {
+        target: "#form",
+        resultName: 'uploadFiles',
+        getMetaFromForm: false,
+        addResultToForm: true,
+        submitOnSuccess: true,
+        triggerUploadOnSubmit: false,
+    })
+</script>
+<!-- <script type="application/javascript" src="{% static 'event_kepanitiaan/js/addFields.js' %}"></script> -->
+<script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maxField = 100; //Input fields increment limitation
+        var addButton = $('.add_button_1'); //Add button selector
+        var wrapper = $('.field_wrapper_1'); //Input field wrapper
+        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="{% static 'event_kepanitiaan/img/remove-icon.png' %}" width="18" height="18"/></a></div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function () {
+            //Check maximum number of input fields
+            if (x < maxField) {
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
+            }
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maxField = 100; //Input fields increment limitation
+        var addButton = $('.add_button_2'); //Add button selector
+        var wrapper = $('.field_wrapper_2'); //Input field wrapper
+        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="{% static 'event_kepanitiaan/img/remove-icon.png' %}" width="18" height="18"/></a></div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function () {
+            //Check maximum number of input fields
+            if (x < maxField) {
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
+            }
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+</script>
+<script>
+    $('select option:first-child').attr("selected", "selected");
+</script>
+<script>
+    var state = false;
+    function toggle() {
+        if (state) {
+            document.getElementById("password").setAttribute("type", "password");
+            document.getElementById("eye").style.color = '#7a797e';
+            state = false;
+        }
+        else {
+            document.getElementById("password").setAttribute("type", "text");
+            state = true;
+        }
+    }
+    var state2 = false;
+    function toggle2() {
+        if (state2) {
+            document.getElementById("retype-password").setAttribute("type", "password");
+            document.getElementById("eye").style.color = '#7a797e';
+            state2 = false;
+        }
+        else {
+            document.getElementById("retype-password").setAttribute("type", "text");
+            state2 = true;
+        }
+    }
+</script>
 {% endblock content %}

@@ -147,7 +147,7 @@ textarea{
     input[type=date]{
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
-        text-align: right;
+        text-align: left;
 
     }
 

@@ -24,7 +24,7 @@
 //     var maxField = 100; //Input fields increment limitation
 //     var addButton = $('.add_button'); //Add button selector
 //     var wrapper = $('.field_wrapper_'+x); //Input field wrapper
-//     var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="{% static 'event_kepanitiaan/img/remove - icon.png' %}" width="18" height="18"/></a></div>'; //New input field html 
+    // var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="{% static 'event_kepanitiaan/img/remove - icon.png' %}" width="18" height="18"/></a></div>'; //New input field html 
 //     var x = 1; //Initial field counter is 1
 
 //     //Once add button is clicked

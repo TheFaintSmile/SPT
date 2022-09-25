@@ -1,5 +1,5 @@
 const jurusan = ["jurusan-fk", "jurusan-fkg", "jurusan-fkm", "jurusan-ff", "jurusan-fik", "jurusan-fmipa", "jurusan-fasilkom", "jurusan-ft", "jurusan-fh", "jurusan-fpsiko", "jurusan-fisip", "jurusan-fib", "jurusan-feb", "jurusan-fia", "jurusan-vokasi"];
-const dictJurusan = {'fk':'jurusan-fk', 'fkg':'jurusan-fkg', 'fkm':'jurusan-fkm', 'ff':'jurusan-ff', 'fik':'jurusan-fik','fmipa':'jurusan-fmipa','fasilkom':'jurusan-fasilkom','ft':'jurusan-ft','fh':'jurusan-fh','fpsiko':'jurusan-fpsiko','fisip':'jurusan-fisip','fib':'jurusan-fib','feb':'jurusan-feb','fia':'jurusan-fia','vokasi':'jurusan-vokasi',}
+const dictJurusan = {'Fakultas Kedokteran':'jurusan-fk', 'Fakultas Kedokteran Gigi':'jurusan-fkg', 'Fakultas Kesehatan Masyarakat':'jurusan-fkm', 'Fakultas Farmasi':'jurusan-ff', 'Fakultas Ilmu Keperawatan':'jurusan-fik','Fakultas Matematika dan Ilmu Pengetahuan Alam':'jurusan-fmipa','Fakultas Ilmu Komputer':'jurusan-fasilkom','Fakultas Teknik':'jurusan-ft','Fakultas Hukum':'jurusan-fh','Fakultas Psikologi':'jurusan-fpsiko','Fakultas Ilmu Sosial Ilmu Politik':'jurusan-fisip','Fakultas Ilmu Pengetahuan Budaya':'jurusan-fib','Fakultas Ekonomi Bisnis':'jurusan-feb','Fakultas Ilmu Administrasi':'jurusan-fia','Vokasi':'jurusan-vokasi',}
 
 function showJurusan(s) {
     for (var i in dictJurusan) {

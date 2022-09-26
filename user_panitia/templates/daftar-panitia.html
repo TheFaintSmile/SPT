@@ -42,6 +42,10 @@
                             <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle2()"></i>
                         </span>
                     </div>
+
+                    <label class="control-label">Unggah Logo Kepanitiaan</label>
+                    <div class="uppy" id="drag-drop-area"></div>
+
                     <br/>
                 
                     <p>Sudah punya akun?  <a href="signin" style="text-decoration: none; color: #1C5188;">Masuk sekarang</a><p>
@@ -56,6 +60,50 @@
         </div>
     <object class="object only-desktop" data="{% static 'user_panitia/svg/Sign up-pana 1.svg' %}" type="image/svg+xml" style="padding-top: 200px; padding-bottom: 10px"></object>
     </div>
+
+     <!-- Script upload ke Foto Peserta-->
+     <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+     <script>
+         var uppy = new Uppy.Core()
+
+         uppy.on('file-added', (file) => {
+             uppy.setFileMeta(file.id, {
+                 id_firebase: "USER_PESERTA/PAS_FOTO/" + uuidv4(),
+             })
+         })
+         uppy.use(Uppy.XHRUpload, {
+             endpoint: '{% url "upload_photo" %}',
+             headers: {'X-CSRFToken':"{{csrf_token}}"},
+             formData: true,
+             fieldName: 'file'
+         })
+         uppy.use(Uppy.Dashboard, {
+             inline: true,
+             target: '#drag-drop-area',
+             proudlyDisplayPoweredByUppy:false,
+             showProgressDetails:true,
+             doneButtonHandler: null,
+             hideUploadButton: true,
+         })
+         uppy.on('complete', (result) => {
+             console.log('Upload complete! We’ve uploaded these files:', result.successful)
+         })
+         uppy.use(Uppy.Form, {
+             target: "#form",
+             resultName: 'uploadFiles',
+             getMetaFromForm: false,
+             addResultToForm: true,
+             submitOnSuccess: true,
+             triggerUploadOnSubmit: false,
+         })
+     </script>
+     <script type="application/javascript" src="{% static 'user_peserta/js/dropdown-jurusan.js' %}"></script>
+     <script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
+     <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+     <script>
+         $('select option:first-child').attr("selected", "selected");
+     </script>
+
     <script>
          var state= false;
                 function toggle(){

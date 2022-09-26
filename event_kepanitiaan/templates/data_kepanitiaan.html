@@ -8,13 +8,14 @@
 {% endblock meta %}
 
 {% block content %}
+{% if request.session.isPanitia %}
 <div class="content-root">
     <div class="form-root">
         <h1 id="judul-form">Masukkan Data Kepanitiaan</h1>
         <section>
             <form action="postsignup" method="post" id="form">
                 {% csrf_token %}
-                <h1>UI Art X</h1>
+                <h1>{{request.session.nama}}</h1>
 
                 <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara"></textarea>
                 <br />
@@ -108,7 +109,6 @@
         triggerUploadOnSubmit: false,
     })
 </script>
-<!-- <script type="application/javascript" src="{% static 'event_kepanitiaan/js/addFields.js' %}"></script> -->
 <script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -190,4 +190,7 @@
         }
     }
 </script>
+{% else %}
+<h1 id="judul-form">Maaf, Akun Anda Tidak Terdaftar Sebagai Panitia</h1>
+{% endif %}
 {% endblock content %}

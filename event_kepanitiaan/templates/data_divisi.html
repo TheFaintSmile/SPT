@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Data Divisi</title>
+<link rel="stylesheet" href="{% static 'event_kepanitiaan/css/style.css' %}" />
+<link href="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.css" rel="stylesheet" />
+{% endblock meta %}
+
+{% block content %}
+{% if request.session.isPanitia %}
+<div class="content-root">
+    <div class="form-root">
+        <a href="/event_kepanitiaan/1" style="text-decoration: none; color: black;">< Kembali</a>
+        <h1 id="judul-form">Masukkan Data Divisi</h1>
+        <section>
+            <form action="postsignup" method="post" id="form">
+                {% csrf_token %}
+
+
+                <textarea id="nama-divisi" name="nama-divisi" rows="1" placeholder="Nama divisi"></textarea>
+                <textarea id="deskripsi-divisi" name="deskripsi-divisi" rows="5" placeholder="Deskripsi divisi..."></textarea>
+                <br />
+
+                <div class="field_wrapper_1">
+                    <a href="javascript:void(0);" class="add_button_1" title="Add field" style="text-decoration: none; color: black; padding-bottom: 5px;">Tambah Divisi +</a>
+                </div>
+
+            
+
+                <input name="uploadFiles" type="hidden">
+                <p>
+                <a href="" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">Submit</a>
+                
+
+            </form>
+
+            <div class="filler"></div>
+
+        </section>
+    </div>
+</div>
+
+<!-- Script upload ke Timeline Kepanitiaan-->
+<script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
+<script>
+    var uppy = new Uppy.Core({
+        restrictions: {
+            maxNumberOfFiles: 1,
+            allowedFileTypes: [".pdf",".jpg" , ".jpeg" , ".png"],
+        },
+    })
+
+    uppy.on('file-added', (file) => {
+        uppy.setFileMeta(file.id, {
+            id_firebase: "KEPANITIAAN/TIMELINE/" + uuidv4(),
+        })
+    })
+    uppy.use(Uppy.XHRUpload, {
+        endpoint: '{% url "upload_photo" %}',
+        headers: { 'X-CSRFToken': "{{csrf_token}}" },
+        formData: true,
+        fieldName: 'file'
+    })
+    uppy.use(Uppy.Dashboard, {
+        inline: true,
+        target: '#drag-drop-area',
+        proudlyDisplayPoweredByUppy: false,
+        showProgressDetails: true,
+        doneButtonHandler: null,
+        hideUploadButton: true,
+    })
+    uppy.on('complete', (result) => {
+        console.log('Upload complete! We’ve uploaded these files:', result.successful)
+    })
+    uppy.use(Uppy.Form, {
+        target: "#form",
+        resultName: 'uploadFiles',
+        getMetaFromForm: false,
+        addResultToForm: true,
+        submitOnSuccess: true,
+        triggerUploadOnSubmit: false,
+    })
+</script>
+<script type="application/javascript" src="{% static 'user_peserta/js/uuid4.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maxField = 100; //Input fields increment limitation
+        var addButton = $('.add_button_1'); //Add button selector
+        var wrapper = $('.field_wrapper_1'); //Input field wrapper
+        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;" >Hapus</a></div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function () {
+            //Check maximum number of input fields
+            if (x < maxField) {
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
+            }
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var maxField = 100; //Input fields increment limitation
+        var addButton = $('.add_button_2'); //Add button selector
+        var wrapper = $('.field_wrapper_2'); //Input field wrapper
+        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button">Hapus</a></div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function () {
+            //Check maximum number of input fields
+            if (x < maxField) {
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
+            }
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function (e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
+    });
+</script>
+<script>
+    $('select option:first-child').attr("selected", "selected");
+</script>
+<script>
+    var state = false;
+    function toggle() {
+        if (state) {
+            document.getElementById("password").setAttribute("type", "password");
+            document.getElementById("eye").style.color = '#7a797e';
+            state = false;
+        }
+        else {
+            document.getElementById("password").setAttribute("type", "text");
+            state = true;
+        }
+    }
+    var state2 = false;
+    function toggle2() {
+        if (state2) {
+            document.getElementById("retype-password").setAttribute("type", "password");
+            document.getElementById("eye").style.color = '#7a797e';
+            state2 = false;
+        }
+        else {
+            document.getElementById("retype-password").setAttribute("type", "text");
+            state2 = true;
+        }
+    }
+</script>
+{% else %}
+<h1 id="judul-form">Maaf, Akun Anda Tidak Terdaftar Sebagai Panitia</h1>
+{% endif %}
+{% endblock content %}

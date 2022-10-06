@@ -19,18 +19,20 @@
 
                 <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara"></textarea>
                 <br />
-                
+
                 <label for="tambah-tugas">Tugas Umum</label>
                 <div class="field_wrapper_1">
                     <div>
-                        <a href="javascript:void(0);" class="add_button_1" title="Add field"><img src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18"/></a>
+                        <a href="javascript:void(0);" class="add_button_1" title="Add field"><img
+                                src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18" /></a>
                     </div>
                 </div>
 
                 <label for="tambah-tugas">Tugas Khusus</label>
                 <div class="field_wrapper_2">
                     <div>
-                        <a href="javascript:void(0);" class="add_button_2" title="Add field"><img src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18"/></a>
+                        <a href="javascript:void(0);" class="add_button_2" title="Add field"><img
+                                src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18" /></a>
                     </div>
                 </div>
 
@@ -79,14 +81,19 @@
     </div>
 </div>
 
-<!-- Script upload ke Foto Peserta-->
+<!-- Script upload ke Timeline Kepanitiaan-->
 <script src="https://releases.transloadit.com/uppy/v2.9.4/uppy.min.js"></script>
 <script>
-    var uppy = new Uppy.Core()
+    var uppy = new Uppy.Core({
+        restrictions: {
+            maxNumberOfFiles: 1,
+            allowedFileTypes: [".pdf",".jpg" , ".jpeg" , ".png"],
+        },
+    })
 
     uppy.on('file-added', (file) => {
         uppy.setFileMeta(file.id, {
-            id_firebase: "USER_PESERTA/PAS_FOTO/" + uuidv4(),
+            id_firebase: "KEPANITIAAN/TIMELINE/" + uuidv4(),
         })
     })
     uppy.use(Uppy.XHRUpload, {

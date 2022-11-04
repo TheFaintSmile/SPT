@@ -15,7 +15,8 @@
         <section>
             <form action="postsignup" method="post" id="form">
                 {% csrf_token %}
-                <h1>{{request.session.nama}}</h1>
+                <label for="nama-acara">Nama Acara Kepanitiaan</label>
+                <input type="text" id="nama-acara" name="nama-acara">
 
                 <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara..."></textarea>
                 <br />
@@ -71,7 +72,7 @@
 
                 <input name="uploadFiles" type="hidden">
                 <p>
-                <a href="/event_kepanitiaan/2" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">SELANJUTNYA</a>
+                <a href="/event_kepanitiaan/add-divisi" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">SELANJUTNYA</a>
                 
             </form>
 

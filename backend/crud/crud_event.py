@@ -25,7 +25,7 @@ def event_create(nama, deskripsi, tugas_umum, tugas_khusus, tanggal_mulai, tangg
             'timeline' : timeline
         }
         db.collection('events').document(nama).set(data)
-        return nama
+        return ""
     except :
         return "terjadi error"
 

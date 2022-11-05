@@ -16,7 +16,8 @@
             <form action="postsignup" method="post" id="form">
                 {% csrf_token %}
                 <label for="nama-lengkap">Nama Lengkap</label>
-                <input type="text" id="nama-lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap Anda...">
+                <input type="text" id="nama-lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap Anda..."
+                    required>
                 <br />
 
                 <label for="Fakultas">Fakultas</label>
@@ -155,17 +156,16 @@
                 </div>
 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Masukkan alamat email Anda..."><br />
+                <input type="email" id="email" name="email" placeholder="Masukkan alamat email Anda..." required><br />
 
                 <label for="npm">NPM</label>
-                <!-- <input type="text" pattern="\d*" id="npm" name="npm" placeholder="Masukkan NPM Anda..." maxlength="10"> -->
                 <input type="text"
                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" id="npm"
-                    name="npm" placeholder="Masukkan NPM Anda..." maxlength="10" /> <br />
+                    name="npm" placeholder="Masukkan NPM Anda..." maxlength="10" required /> <br />
 
                 <label for="password">Kata Sandi</label>
                 <div class="input-password">
-                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi...">
+                    <input type="password" id="password" name="password" placeholder="Masukkan kata sandi..." required>
                     <span class="sneak-toggle">
                         <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle()"></i>
                     </span>
@@ -175,7 +175,7 @@
                 <label for="retype-password">Ulangi Kata Sandi</label>
                 <div class="input-password">
                     <input type="password" id="retype-password" name="retype-password"
-                        placeholder="Masukkan ulang kata sandi...">
+                        placeholder="Masukkan ulang kata sandi..." required>
                     <span class="sneak-toggle">
                         <i class="fa-solid fa-eye" aria-hidden="true" id="eye" onclick="toggle2()"></i>
                     </span>
@@ -203,7 +203,7 @@
                 var uppy = new Uppy.Core({
                     restrictions: {
                         maxNumberOfFiles: 1,
-                        allowedFileTypes: [".pdf", ".jpg", ".jpeg", ".png"],
+                        allowedFileTypes: [".jpg", ".jpeg", ".png"],
                     },
                 })
 
@@ -270,6 +270,17 @@
                     state2 = true;
                 }
             }
+        </script>
+        <script>
+            var form = document.getElementById("form");
+            // make it required for upload file div
+            form.onsubmit = function () {
+                var requiredDiv = document.getElementById("drag-drop-area");
+                if (requiredDiv.innerHTML.trim().length == 0) {
+                    alert("Please upload your photo as well.");
+                    return false;
+                }
+            };
         </script>
     </div>
     <object class="object only-desktop" data="{% static 'user_peserta/svg/Sign up-pana 1.svg' %}"

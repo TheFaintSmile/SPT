@@ -16,13 +16,13 @@
             <form action="postsignup" method="post" id="form">
                 {% csrf_token %}
                 <label for="nama-acara">Nama Acara Kepanitiaan</label>
-                <input type="text" id="nama-acara" name="nama-acara">
+                <input type="text" id="nama-acara" name="nama-acara" required>
 
-                <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara..."></textarea>
+                <textarea id="deskripsi-acara" name="deskripsi-acara" rows="5" placeholder="Deskripsi acara..." required></textarea>
                 <br />
 
                 <label for="tambah-tugas">Tugas Umum</label>
-                <div class="field_wrapper_1">
+                <div class="field_wrapper_1" id="tugas-umum" name="tugas-umum">
                     <div>
                         <a href="javascript:void(0);" class="add_button_1" title="Add field"><img
                                 src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18" /></a>
@@ -30,22 +30,21 @@
                 </div>
 
                 <label for="tambah-tugas">Tugas Khusus</label>
-                <div class="field_wrapper_2">
+                <div class="field_wrapper_2" id="tugas-khusus" name="tugas-khusus">
                     <div>
                         <a href="javascript:void(0);" class="add_button_2" title="Add field"><img
                                 src="{% static 'event_kepanitiaan/img/add-icon.png' %}" width="18" height="18" /></a>
                     </div>
                 </div>
 
-
                 <label for="mulai-event">Mulai event</label>
-                <input type="date" id="mulai-event" name="mulai-event">
+                <input type="date" id="mulai-event" name="mulai-event" required>
 
                 <label for="selesai-event">Selesai event</label>
-                <input type="date" id="selesai-event" name="selesai-event">
+                <input type="date" id="selesai-event" name="selesai-event" required>
 
                 <label for="Tingkat">Tingkat</label>
-                <select id="tingkat" name="tingkat">
+                <select id="tingkat" name="tingkat" required>
                     <option value="none">--Pilih Tingkatan--</option>
                     <option value="Jurusan">Jurusan</option>
                     <option value="Fakultas">Fakultas</option>
@@ -54,7 +53,7 @@
                 </select> <br />
 
                 <label for="Bidang">Bidang</label>
-                <select id="bidang" name="bidang">
+                <select id="bidang" name="bidang" required>
                     <option value="none">--Pilih Bidang--</option>
                     <option value="Seni Budaya">Seni Budaya</option>
                     <option value="Olahraga">Olahraga</option>
@@ -70,9 +69,11 @@
                 <label for="Timeline">Timeline</label> <br>
                 <div class="uppy" id="drag-drop-area"></div>
 
-                <input name="uploadFiles" type="hidden">
+                <input name="uploadFiles" type="hidden" required>
                 <p>
-                <a href="/event_kepanitiaan/add-divisi" class="button fit-content" style="border-radius: 50px; padding: 10px 70px">SELANJUTNYA</a>
+                <a href="/event_kepanitiaan/add-divisi">
+                    <button type="submit" value="submit" class="button fit-content" style="border-radius: 50px; padding: 10px 70px" id="submitbutton">SELANJUTNYA</button>
+                </a>
                 
             </form>
 
@@ -130,15 +131,17 @@
         var maxField = 100; //Input fields increment limitation
         var addButton = $('.add_button_1'); //Add button selector
         var wrapper = $('.field_wrapper_1'); //Input field wrapper
-        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
-        var x = 1; //Initial field counter is 1
-
+        var x = 1; //Initial field counter is 1 
+        // var fieldHTML = '<div><input type="text" name="field_name[]" id="'+ x +'" name="tugas-umum-'+ x +'" value=""/><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
+        
         //Once add button is clicked
         $(addButton).click(function () {
             //Check maximum number of input fields
             if (x < maxField) {
+                var fieldHTML = '<div><input type="text" name="field_name[]" id="tugas-umum-'+ x +'" name="tugas-umum-'+ x +'" value=""/><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
                 x++; //Increment field counter
                 $(wrapper).append(fieldHTML); //Add field html
+                console.log(fieldHTML);
             }
         });
 
@@ -155,15 +158,17 @@
         var maxField = 100; //Input fields increment limitation
         var addButton = $('.add_button_2'); //Add button selector
         var wrapper = $('.field_wrapper_2'); //Input field wrapper
-        var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
         var x = 1; //Initial field counter is 1
-
+        // var fieldHTML = '<div><input type="text" name="field_name[]" id="'+ x +'" name="tugas-khusus-'+ x +' value=""/><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
+        
         //Once add button is clicked
         $(addButton).click(function () {
             //Check maximum number of input fields
             if (x < maxField) {
+                var fieldHTML = '<div><input type="text" name="field_name[]" id="tugas-khusus-'+ x +'" name="tugas-khusus-'+ x +'" value=""/><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
                 x++; //Increment field counter
                 $(wrapper).append(fieldHTML); //Add field html
+                console.log(fieldHTML);
             }
         });
 

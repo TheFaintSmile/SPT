@@ -27,7 +27,7 @@ urlpatterns = [
     path('dashboard_panitia/', include(('dashboard_panitia.urls', 'dashboard_panitia'), namespace='dashboard_panitia')),
     path('backend/', include('backend.urls')),
     path('dashboard_peserta/', include(('dashboard_pendaftar.urls', 'dashboard_pendaftar'), namespace='dashboard_peserta')),
-    path('event_kepanitiaan/', include(('event_kepanitiaan.urls', 'event_kepanitiaan'), namespace='event_kepitiaan')),
+    path('event_kepanitiaan/', include(('event_kepanitiaan.urls', 'event_kepanitiaan'), namespace='event_kepanitiaan')),
 
     
 ]

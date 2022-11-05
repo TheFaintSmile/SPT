@@ -12,16 +12,18 @@ def postSignUp(request):
 	# idPanitia = request.POST.get("nama-acara")
 	nama = request.POST.get("nama-acara")
 	email = request.POST.get("email")
+	kategori = request.POST.get("kategori")
 	password = request.POST.get("password")
 	password2 = request.POST.get("retype-password")
-	kategori = request.POST.get("kategori")
-	# jumlah_divisi = request.POST.get("jumlah-divisi")
+	photos = request.POST.get("uploadFiles")
+	photos = json.loads(photos)
 	
 	if (password == password2):
 		message = user_panitia_create(nama, email, password, kategori)
 	
 	if message == "":
 		return redirect("user_panitia:signin")
+		# mau gw tambahin else if per error dari crud_usernya
 	else:
 		return redirect("user_panitia:signup")
 

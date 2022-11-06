@@ -51,6 +51,7 @@ def event_update(deskripsi, tugas_umum, tugas_khusus, tanggal_mulai, tanggal_sel
             'timeline' : timeline
         }
         db.collection('events').document(nama).set(data)
+        return ""
     except :
         return "terjadi error"
 

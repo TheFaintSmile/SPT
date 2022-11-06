@@ -13,7 +13,7 @@
     <div class="form-root">
         <h1 id="judul-form">Masukkan Data Kepanitiaan</h1>
         <section>
-            <form action="postsignup" method="post" id="form">
+            <form action="postcreatekepanitiaan" method="post" id="form">
                 {% csrf_token %}
                 <label for="nama-acara">Nama Acara Kepanitiaan</label>
                 <input type="text" id="nama-acara" name="nama-acara" required>
@@ -69,7 +69,7 @@
                 <label for="Timeline">Timeline</label> <br>
                 <div class="uppy" id="drag-drop-area"></div>
 
-                <input name="uploadFiles" type="hidden" required>
+                <input name="uploadFiles" type="hidden">
                 <p>
                 <a href="/event_kepanitiaan/add-divisi">
                     <button type="submit" value="submit" class="button fit-content" style="border-radius: 50px; padding: 10px 70px" id="submitbutton">SELANJUTNYA</button>
@@ -132,13 +132,13 @@
         var addButton = $('.add_button_1'); //Add button selector
         var wrapper = $('.field_wrapper_1'); //Input field wrapper
         var x = 1; //Initial field counter is 1 
-        // var fieldHTML = '<div><input type="text" name="field_name[]" id="'+ x +'" name="tugas-umum-'+ x +'" value=""/><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
+        // var fieldHTML = '<div><input type="text" name="field_name[]" id="'+ x +'" name="tugas-umum-'+ x +'"><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
         
         //Once add button is clicked
         $(addButton).click(function () {
             //Check maximum number of input fields
             if (x < maxField) {
-                var fieldHTML = '<div><input type="text" name="field_name[]" id="tugas-umum-'+ x +'" name="tugas-umum-'+ x +'" value=""/><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
+                var fieldHTML = '<div><input type="text" name="field_name[]" id="tugas-umum-'+ x +'" name="tugas-umum-'+ x +'"><a href="javascript:void(0);"class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
                 x++; //Increment field counter
                 $(wrapper).append(fieldHTML); //Add field html
                 console.log(fieldHTML);
@@ -159,13 +159,13 @@
         var addButton = $('.add_button_2'); //Add button selector
         var wrapper = $('.field_wrapper_2'); //Input field wrapper
         var x = 1; //Initial field counter is 1
-        // var fieldHTML = '<div><input type="text" name="field_name[]" id="'+ x +'" name="tugas-khusus-'+ x +' value=""/><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
+        // var fieldHTML = '<div><input type="text" name="field_name[]" id="'+ x +'" name="tugas-khusus-'+ x +'><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
         
         //Once add button is clicked
         $(addButton).click(function () {
             //Check maximum number of input fields
             if (x < maxField) {
-                var fieldHTML = '<div><input type="text" name="field_name[]" id="tugas-khusus-'+ x +'" name="tugas-khusus-'+ x +'" value=""/><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
+                var fieldHTML = '<div><input type="text" name="field_name[]" id="tugas-khusus-'+ x +'" name="tugas-khusus-'+ x +'"><a href="javascript:void(0);" class="remove_button" style="text-decoration: none; color: black;">Hapus</a></div>'; //New input field html 
                 x++; //Increment field counter
                 $(wrapper).append(fieldHTML); //Add field html
                 console.log(fieldHTML);

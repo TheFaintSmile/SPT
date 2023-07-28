@@ -19,15 +19,17 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('homepage.urls')),
-    path('user/', include('User.urls')),
+    path('', include('spt.urls')),
     # path('user/', include(('User.urls', 'user'), namespace='user')),
-    path('user_peserta/', include(('user_peserta.urls', 'user_peserta'), namespace='user_peserta')),
-    path('user_panitia/', include(('user_panitia.urls', 'user_panitia'), namespace='user_panitia')),
-    path('dashboard_panitia/', include(('dashboard_panitia.urls', 'dashboard_panitia'), namespace='dashboard_panitia')),
+    path('user_peserta/', include(('user_peserta.urls',
+         'user_peserta'), namespace='user_peserta')),
+    path('user_panitia/', include(('user_panitia.urls',
+         'user_panitia'), namespace='user_panitia')),
+    path('dashboard_panitia/', include(('dashboard_panitia.urls',
+         'dashboard_panitia'), namespace='dashboard_panitia')),
     path('backend/', include('backend.urls')),
-    path('dashboard_peserta/', include(('dashboard_pendaftar.urls', 'dashboard_pendaftar'), namespace='dashboard_peserta')),
-    path('event_kepanitiaan/', include(('event_kepanitiaan.urls', 'event_kepanitiaan'), namespace='event_kepanitiaan')),
-
-    
+    path('dashboard_peserta/', include(('dashboard_pendaftar.urls',
+         'dashboard_pendaftar'), namespace='dashboard_peserta')),
+    path('event_kepanitiaan/', include(('event_kepanitiaan.urls',
+         'event_kepanitiaan'), namespace='event_kepanitiaan')),
 ]

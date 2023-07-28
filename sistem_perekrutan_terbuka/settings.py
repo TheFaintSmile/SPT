@@ -46,14 +46,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'dashboard_panitia',
     'dashboard_pendaftar',
-    'homepage',
-    'User',
+    'spt',
     'backend',
     'user_peserta',
     'user_panitia',
     'event_kepanitiaan'
+]
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',  # Add your frontend URL here
+    'http://127.0.0.1:3000'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'sistem_perekrutan_terbuka.urls'

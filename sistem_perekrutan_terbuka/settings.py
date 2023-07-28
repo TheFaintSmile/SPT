@@ -47,13 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'dashboard_panitia',
-    'dashboard_pendaftar',
     'spt',
     'backend',
-    'user_peserta',
-    'user_panitia',
-    'event_kepanitiaan'
 ]
 
 

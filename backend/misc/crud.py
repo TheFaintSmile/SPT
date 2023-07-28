@@ -234,7 +234,7 @@ def joinIntoPanitia(idPeserta, idPanitia, dataPeserta, dataPanitia):
         # Update the pesertaYangMengikuti field in Firestore with the updated data
         panitia_ref.update({'pesertaYangMengikuti': pesertaYangMengikuti})
 
-        responseGet = getUserById(idPanitia)
+        responseGet = getUserById(idPeserta)
         readResult = json.loads(responseGet.content)
 
         if readResult['code'] != 200:

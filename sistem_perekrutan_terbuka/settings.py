@@ -32,7 +32,7 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app", "sptbemui.com", "sptbemuibackend.com"]
+ALLOWED_HOSTS = [".domcloud.io", "sptbemui.com", "sptbemuibackend.com"]
 
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
